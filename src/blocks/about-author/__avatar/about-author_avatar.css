@@ -1,0 +1,8 @@
+.about-author_avatar{
+    border-radius: 1000px;
+    margin-top: 5rem;
+    width: 29rem;
+    height: 29rem;
+    background-image: url(/src/images/Screenshot_1.png);
+    background-size: cover;
+}

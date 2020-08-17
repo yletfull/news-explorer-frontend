@@ -1,0 +1,14 @@
+.header__nav-button{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+    margin-right: 2rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    text-decoration: none;
+}

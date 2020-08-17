@@ -1,0 +1,10 @@
+.search__title{
+max-width: 608px;
+font-family: Roboto Slab;
+font-style: normal;
+font-weight: normal;
+font-size: 60px;
+line-height: 64px;
+/* or 107% */
+color: #FFFFFF;
+}

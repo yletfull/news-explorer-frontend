@@ -1,0 +1,7 @@
+.news__card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #FFFFFF;
+    border-radius: 15px;
+}

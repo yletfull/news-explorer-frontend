@@ -1,0 +1,7 @@
+.news__card-place{
+    margin-top: 4rem;
+    display: grid;
+    margin: 4rem auto 0;
+    grid-template-columns: repeat(3, 25rem);
+    grid-gap: 1rem 1rem;
+}

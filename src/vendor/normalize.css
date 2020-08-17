@@ -1,5 +1,7 @@
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-
+*{
+  margin: 0;
+}
 /* Document
    ========================================================================== */
 
@@ -39,7 +41,7 @@ main {
 
 h1 {
   font-size: 2em;
-  margin: 0.67em 0;
+  margin: 0;
 }
 
 /* Grouping content
@@ -74,6 +76,7 @@ pre {
  */
 
 a {
+  margin: 0;
   background-color: transparent;
 }
 

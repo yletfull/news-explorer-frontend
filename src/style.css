@@ -1,18 +1,19 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts.css);
 
-@import url(./blocks/root/root.css);
-@import url(./blocks/header/header.css);
-@import url(./blocks/logo/logo.css);
-@import url(./blocks/profile/profile.css);
-@import url(./blocks/user-info/user-info.css);
-@import url(./blocks/button/button.css);
-@import url(./blocks/places-list/places-list.css);
-@import url(./blocks/place-card/place-card.css);
-@import url(./blocks/popup/popup.css);
-@import url(./blocks/zoom-section/zoom-section.css);
-@import url(./blocks/loading/__fountainG.css); 
 
-body {
-  background-color: #000;
+@import url(./blocks/header/header.css);
+@import url(./blocks/root/root.css);
+@import url(./blocks/search/search.css);
+@import url(./blocks/about-author/about-author.css);
+@import url(./blocks/news/news.css);
+
+.button:focus {
+    outline: none !important;
+}
+.input:focus {
+    outline: none !important;
+}
+.input{
+    padding-left:24px;
 }

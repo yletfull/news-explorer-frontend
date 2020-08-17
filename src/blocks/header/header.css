@@ -1,6 +1,19 @@
-.header {
-  min-height: 132px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #A5A5A5;
+@import url(./__nav-button/header__nav-button.css);
+@import url(./__nav-button_rectangle/header__nav-button_rectangle.css);
+@import url(./__navigation/header__navigation.css);
+@import url(./__logo-text/header__logo-text.css);
+@import url(./__nav-button_current/header__nav-button_current.css);
+
+.header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: rgba(196, 196, 196, 0.01);
+    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+    border-bottom: rgba(196, 196, 196, 0.01) solid 1px;
 }
