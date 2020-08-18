@@ -11,7 +11,7 @@ const isDev = process.env.NODE_ENV === 'development';
 module.exports = {
   entry: {
     main: './src/js/index.js',
-    // articles: './src/js/articles.js',
+    articles: './src/js/articles.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -19,7 +19,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      images: path.resolve(__dirname, 'src/images/')
+      images: path.resolve(__dirname, 'src/images/'),
     },
   },
   module: {
@@ -90,14 +90,14 @@ module.exports = {
       inject: false,
       template: './src/pages/index.html',
       filename: 'index.html',
-      chunks: 'main',
+      chunks: ['main'],
     }),
-    // new HtmlWebpackPlugin({
-    //   inject: false,
-    //   template: './src/pages/articles.html',
-    //   filename: 'articles.html',
-    //   chunks: 'articles',
-    // }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      template: './src/pages/articles.html',
+      filename: 'articles.html',
+      chunks: ['articles'],
+    }),
     new WebpackMd5Hash(),
     new webpack.DefinePlugin({
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),

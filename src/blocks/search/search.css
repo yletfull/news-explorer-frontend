@@ -6,7 +6,7 @@
 @import url(./__block/search__block.css);
 
 .search{
-    background-image: url(/src/images/search-block_background.png);
+    background-image: url(~images/search-block_background.png);
     height: 36rem;
     background-size: cover;
     background-repeat: no-repeat;
