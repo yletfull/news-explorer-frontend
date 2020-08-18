@@ -16,3 +16,6 @@ line-height: 24px;
 color: #FFFFFF;
 border: none;
 }
+.search__button:hover{
+    background: #347EFF;
+}
