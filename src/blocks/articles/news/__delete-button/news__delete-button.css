@@ -1,0 +1,13 @@
+
+.news__delete-button{
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    bottom: 32rem;
+    background-image: url('~images/delete-icon.png');
+    height: 2.5rem;
+    width: 2.5rem;
+}
+.news__delete-button:hover{
+    background-image: url('~images/delete-icon-active.png');
+}

@@ -1,0 +1,21 @@
+
+.news__tags-place{
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    bottom: 32rem;
+    background-image: url('~images/delete-icon.png');
+    height: 2.5rem;
+    width: 5.5rem;
+    background: #FFFFFF;
+    border-radius: 10px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+}

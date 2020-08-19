@@ -7,10 +7,10 @@
 @import url(./__card-title/news__card-title.css);
 @import url(./__card/news__card.css);
 @import url(./__source/news__source.css);
-@import url(./__tltle/news__title.css);
 @import url(./__date/news__date.css);
 @import url(./__button/news__button.css);
-@import url(./__flag/news__flag.css);
+@import url(./__delete-button/news__delete-button.css);
+@import url(.//__tags-place/news__tags-place.css);
 
 .news{
     display: flex;
