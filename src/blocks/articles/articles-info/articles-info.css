@@ -1,0 +1,11 @@
+@import url(./__keywords/articles-info__keywords.css);
+@import url(./__subtitle/articles-info__subtitle.css);
+@import url(./__title/articles-info__title.css);
+
+.articles-info{
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 6.5rem;
+}
