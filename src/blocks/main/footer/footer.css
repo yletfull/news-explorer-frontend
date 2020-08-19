@@ -1,0 +1,11 @@
+@import url(./__info/footer__info.css);
+@import url(./__nav-button/footer__nav-button.css);
+@import url(./__nav/footer__nav.css);
+@import url(./__social-icon/footer__social-icon.css);
+
+.footer{
+    display: flex;
+    flex-direction: row;
+    margin: 2rem 0 1.625rem 0;
+    justify-content: space-between;
+}

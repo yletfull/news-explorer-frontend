@@ -1,0 +1,10 @@
+.news__card-subtitle{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    /* or 137% */
+    color: #1A1B22;
+    margin: 1rem 1.5rem 0;
+}

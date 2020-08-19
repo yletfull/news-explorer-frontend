@@ -1,0 +1,7 @@
+.root {
+    /* background-color: black; */
+    min-height: 100vh;
+    font-family: 'Inter';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
