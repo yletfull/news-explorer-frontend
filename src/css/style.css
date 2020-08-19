@@ -8,6 +8,7 @@
 @import url(../blocks/about-author/about-author.css);
 @import url(../blocks/news/news.css);
 @import url(../blocks/footer/footer.css);
+@import url(../blocks/preloader/preloader.css);
 
 
 
@@ -19,6 +20,9 @@
 }
 .input {
     padding-left:24px;
+}
+.input:focus {
+    outline: none !important;
 }
 a {
     text-decoration: none;
