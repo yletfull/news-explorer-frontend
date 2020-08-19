@@ -8,5 +8,5 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: calc((100vw - 1260px) / 2);
+    margin-left: 6.5rem;
 }
