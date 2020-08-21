@@ -9,6 +9,7 @@
 @import url(../blocks/main/news/news.css);
 @import url(../blocks/main/footer/footer.css);
 @import url(../blocks/main/preloader/preloader.css);
+@import url(../blocks/main/popup/popup.css);
 
 
 @import url(./actions.css);

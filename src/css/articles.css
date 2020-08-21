@@ -9,16 +9,11 @@
 @import url(../blocks/main/news/news.css);
 @import url(../blocks/main/footer/footer.css);
 @import url(../blocks/main/preloader/preloader.css);
+@import url(../blocks/main/popup/popup.css);
 
 @import url(../blocks/articles/header/header.css);
 @import url(../blocks/articles/articles-info/articles-info.css);
 @import url(../blocks/articles/news/news.css);
-/* @import url(../blocks/articles/root/root.css);
-@import url(../blocks/articles/search/search.css);
-@import url(../blocks/articles/about-author/about-author.css);
-@import url(../blocks/articles/news/news.css);
-@import url(../blocks/articles/footer/footer.css);
-@import url(../blocks/articles/preloader/preloader.css); */
 
 
 @import url(./actions.css);

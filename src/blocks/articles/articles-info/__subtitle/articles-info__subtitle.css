@@ -8,3 +8,17 @@
     margin-top: 1.75rem;
     width: 33rem;
 }
+
+@media (max-width:768px){
+    .articles-info__subtitle{
+        font-size: 30px;
+        line-height: 34px;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width:625px){
+    .articles-info__subtitle{
+
+    }
+}

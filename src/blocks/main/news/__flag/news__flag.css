@@ -7,9 +7,17 @@
     height: 2.5rem;
     width: 2.5rem;
 }
-.news__flag_active{
+.news__flag_enable{
     background-image: url('~images/flag-enable.png');
 }
 .news__flag:hover{
     background-image: url('~images/flag-hover.png');
+}
+
+@media (max-width:768px){
+    .news__flag{
+        top:0.5rem!important;
+        right:0.5rem!important;
+        bottom: 23.875rem!important;
+    }
 }

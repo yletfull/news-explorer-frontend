@@ -7,3 +7,17 @@
     color: rgba(26, 27, 34, 0.5);
     margin-top: 2.5rem;
 }
+
+@media (max-width:768px){
+    .articles-info__title{
+        font-size: 14px;
+        margin-top: 1.5rem!important;
+    }
+}
+
+@media (max-width:625px){
+    .articles-info__title{
+        margin-top: .5rem!important;
+    }
+}
+

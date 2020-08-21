@@ -15,14 +15,15 @@
         <header class="header">
             <h1 class="header__logo-text">NewsExplorer</h1>
             <nav class="header__navigation">
-                <a href="#" class="header__nav-button header__nav-button_current">Главная</a>
-                <a href="./" class="header__nav-button header__nav-button_rectangle">Авторизоваться</a>
+                <a href="#" class="header__nav-button">Главная</a>
+                <a href="./" class="header__nav-button header__nav-button_current">Сохранённые статьи</a>
+                <a href="./" class="header__nav-button header__nav-button_rectangle">Андрей&nbsp;<img src="<%=require('../images/logout.svg')%>" alt="Выйти" class="header__logout"></a>
             </nav>
         </header>
         <main class="main">
             <section class="articles-info">
                 <h3 class="articles-info__title">Сохранённые статьи</h3>
-                <p class="articles-info__subtitle">Грета, у вас 5 сохранённых статей</p>
+                <p class="articles-info__subtitle">Андрей, у вас 5 сохранённых статей</p>
                 <p class="articles-info__keywords">По ключевым словам: <b>Природа</b>, <b>Тайга</b> и <b>2 другим</b></p>
             </section>
             <section class="news news_empty_hidden">
@@ -37,6 +38,7 @@
                         <img src="<%=require('../images/card-icon-example.jpg')%>" alt="Национальное достояние – парки" class="news__card-icon">
                         <div class="news__delete-button"></div>
                         <div class="news__tags-place">Природа</div>
+                        <div class="news__help">Удалить из сохранённых</div>
                         <p class="news__date">2 августа, 2019</p>
                         <h3 class="news__card-title">Национальное достояние – парки</h3>
                         <p class="news__card-subtitle">В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала складываться система национальных парков – охраняемых территорий, где и сегодня каждый может приобщиться к природе.</p>
@@ -61,12 +63,47 @@
         <footer class="footer">
             <p class="footer__info">© 2020 Supersite, Powered by News API</p>
             <div class="footer__nav">
-                <a class="footer__nav-button" href="">Главная</a>
-                <a class="footer__nav-button" href="">Яндекс.практикум</a>
-                <img src="../src/images/GitHub.jpg" alt="Github" class="footer__social-icon">
-                <img src="../src/images/Facebook.jpg" alt="Facebook" class="footer__social-icon">
+                <div class="footer__links">
+                    <a class="footer__nav-button" href="">Главная</a>
+                    <a class="footer__nav-button" href="">Яндекс.практикум</a>
+                </div>
+                <div class="footer__icons">
+                    <a href="https://github.com/yletfull" class="footer__social-icon"><img src="<%=require('../images/GitHub.jpg')%>" alt="Github"></a>
+                    <a href="https://vk.com" class="footer__social-icon"><img src="<%=require('../images/vk.png')%>" alt="Vkontakte"></a>
+                </div>
             </div>
         </footer>
+        
+        <div class="popup_hidden popup_login">
+            <div class="popup__content">
+                <h2 class="popup__title">Вход</h2>
+                <img src="<%=require('../images/close.svg')%>" alt="Закрыть" class="popup__close">
+                <form class="popup__form">
+                    <p class="popup__input-descriptor">Email</p>
+                    <input class="input popup__input" type="text" placeholder="Введите почту">
+                    <p class="popup__input-descriptor">Пароль</p>
+                    <input class="input popup__input" type="password" placeholder="Введите пароль">
+                    <button class="button popup__button">Войти</button>
+                </form>
+                <p class="popup__alter-action">или <a href="#">Зарегистрироваться</a></p>
+            </div>
+        </div>
+        <div class="popup_hidden popup_registration">
+            <div class="popup__content">
+                <h2 class="popup__title">Регистрация</h2>
+                <img src="<%=require('../images/close.svg')%>" alt="Закрыть" class="popup__close">
+                <form class="popup__form">
+                    <p class="popup__input-descriptor">Email</p>
+                    <input class="input popup__input" type="text" placeholder="Введите почту">
+                    <p class="popup__input-descriptor">Пароль</p>
+                    <input class="input popup__input" type="password" placeholder="Введите пароль">
+                    <p class="popup__input-descriptor">Имя</p>
+                    <input class="input popup__input" type="text" placeholder="Введите своё имя">
+                    <button class="button popup__button">Зарегистрироваться</button>
+                </form>
+                <p class="popup__alter-action">или <a href="#">Войти</a></p>
+            </div>
+        </div>
         <div class="preloader_hidden">
             <i class="preloader__circle_hidden"></i>
         </div>

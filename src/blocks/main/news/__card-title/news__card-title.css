@@ -8,3 +8,11 @@
     margin-top: 0.75rem;
     margin: 0.75rem 1.5rem;
 }
+
+@media (max-width:768px){
+    .news__card-title{
+        margin: 0.75rem 1rem 0 0.75rem!important;
+        font-size: 22px!important;
+        line-height: 24px!important;
+    }
+}

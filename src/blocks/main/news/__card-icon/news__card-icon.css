@@ -5,3 +5,21 @@
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
 }
+
+@media (min-width:769px) and (max-width:1250px){
+    .news__card-icon{
+        height: 9.375rem!important;
+    }
+}
+
+@media (max-width:768px){
+    .news__card-icon{
+        height: 9.375rem!important;
+    }
+}
+
+@media (max-width:320px){
+    .news__card-icon{
+        height: 12.25rem!important;
+    }
+}

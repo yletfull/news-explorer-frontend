@@ -1,6 +1,32 @@
 .search__form{
     position: relative;
     margin-top: 4rem;
-    max-width: 32rem;
+    width: 100%;
 }
 
+@media (max-width:1024px){
+    .search__form{
+        font-size: 36px;
+        line-height: 40px;
+    }
+}
+
+
+@media (max-width:768px){
+    .search__form{
+        margin-top: 48px;
+    }
+}
+
+@media (max-width:570px){
+    .search__form{
+        margin-top: 122px;
+    }
+}
+
+
+/* @media (max-width:320px){
+    .search__title{
+        max-width: 320px;
+    }
+} */

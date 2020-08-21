@@ -2,10 +2,19 @@
 @import url(./__nav-button/footer__nav-button.css);
 @import url(./__nav/footer__nav.css);
 @import url(./__social-icon/footer__social-icon.css);
+@import url(./__icons/footer__icons.css);
+@import url(./__links/footer__links.css);
 
 .footer{
     display: flex;
     flex-direction: row;
     margin: 2rem 0 1.625rem 0;
     justify-content: space-between;
+}
+
+@media (max-width:625px){
+    .footer{
+        flex-direction: column;
+        justify-content: ;
+    }
 }

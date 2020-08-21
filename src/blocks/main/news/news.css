@@ -11,6 +11,7 @@
 @import url(./__date/news__date.css);
 @import url(./__button/news__button.css);
 @import url(./__flag/news__flag.css);
+@import url(./__help/news__help.css);
 
 .news{
     display: flex;

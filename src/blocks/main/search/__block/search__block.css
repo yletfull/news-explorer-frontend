@@ -1,4 +1,25 @@
 .search__block{
-    max-width: 32rem;
-    margin: 2em auto 0;
+    max-width: 38rem;
+
+}
+
+
+
+@media (max-width:768px){
+    .search__block{
+        max-width: 28.25rem;
+        margin: 0 10rem 0 10rem;
+    }
+}
+
+@media (max-width:570px){
+    .search__block{
+        margin: 5.375rem 1rem 0 1rem;
+    }
+}
+
+@media (max-width:400px){
+    .search__block{
+        margin-top: 1.875rem;
+    }
 }

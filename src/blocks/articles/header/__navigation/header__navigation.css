@@ -1,0 +1,9 @@
+.header__navigation{
+    display: flex;
+}
+
+@media(max-width:700px){
+    .header__navigation{
+        background-image: url(~images/menu-black.svg);
+    }
+}

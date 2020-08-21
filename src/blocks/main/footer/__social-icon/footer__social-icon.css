@@ -5,3 +5,21 @@
 .footer__social-icon:last-child{
     margin-right: 108px;
 }
+
+
+@media (max-width:768px){
+    .footer__social-icon{
+        margin-left: 0!important;
+        margin-right: 1.6rem!important;
+    }
+}
+
+@media (max-width:625px){
+    .footer__social-icon{
+        margin-top: 2rem!important;
+        margin-left: 0!important;
+        margin-bottom: 0!important;
+        height: 17rem;
+        width: 17rem;
+    }
+}

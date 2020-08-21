@@ -9,6 +9,13 @@
     text-align: center;
 
     /* main/primary */
-    margin-right: 29px;
+    margin-right: 1.8125rem;
     color: #1A1B22;
+}
+
+@media (max-width:625px){
+    .footer__nav-button{
+        order: 1;
+        margin: 0 1rem 2rem 1rem;
+    }
 }

@@ -22,3 +22,24 @@ border: none;
 .search__button:active{
     background: #2A65CC;
 }
+
+@media (max-width:1024px){
+    .search__button{
+        max-height: 56px;
+    }
+}
+
+@media (max-width:700px){
+    .search__button{
+        position: relative;
+        width: 100%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width:400px){
+    .search__button{
+        margin-bottom: 2rem;
+    }
+}

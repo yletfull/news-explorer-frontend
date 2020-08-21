@@ -1,11 +1,9 @@
 .button:focus {
     outline: none !important;
+    cursor: pointer;
 }
 .button:hover {
     cursor: pointer
-}
-.input {
-    padding-left:24px;
 }
 .input:focus {
     outline: none !important;

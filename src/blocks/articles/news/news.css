@@ -10,7 +10,8 @@
 @import url(./__date/news__date.css);
 @import url(./__button/news__button.css);
 @import url(./__delete-button/news__delete-button.css);
-@import url(.//__tags-place/news__tags-place.css);
+@import url(./__tags-place/news__tags-place.css);
+@import url(./__help/news__help.css);
 
 .news{
     display: flex;

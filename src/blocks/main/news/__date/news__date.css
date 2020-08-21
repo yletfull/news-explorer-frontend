@@ -9,3 +9,9 @@
     color: #B6BCBF;
     margin: 1.25rem 1.5rem 0;
 }
+
+@media (max-width:768px){
+    .news__date{
+        margin: 1rem!important;
+    }
+}

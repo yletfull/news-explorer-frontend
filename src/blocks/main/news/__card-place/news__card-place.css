@@ -5,3 +5,37 @@
     grid-template-columns: repeat(3, 25rem);
     grid-gap: 1rem 1rem;
 }
+
+@media (min-width:769px) and (max-width:1250px){
+    .news__card-place{
+        grid-template-columns: repeat(3, 14rem)!important;
+    }
+}
+
+
+@media (max-width:768px){
+    .news__card-place{
+        margin: 4rem auto 0;
+        grid-template-columns: repeat(3, 14rem)!important;
+        grid-gap: 1rem 1rem;
+    }
+}
+
+@media (max-width:710px){
+    .news__card-place{
+        grid-template-columns: repeat(2, 14rem)!important;
+    }
+}
+
+@media (max-width:486px){
+    .news__card-place{
+        grid-template-columns: repeat(1, 18rem)!important;
+        grid-gap: 9px 1rem!important;
+    }
+}
+
+@media (max-width:320px){
+    .news__card-place{
+        grid-gap: 1rem 1rem!important;
+    }
+}
