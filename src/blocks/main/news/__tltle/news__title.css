@@ -25,6 +25,12 @@
     }
 }
 
+@media (max-width:545px){
+    .news__title{
+        width: auto;
+    }
+}
+
 @media (max-width:390px){
     .news__title{
         width: 20rem;

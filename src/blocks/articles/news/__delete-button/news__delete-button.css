@@ -11,3 +11,11 @@
 .news__delete-button:hover{
     background-image: url('~images/delete-icon-active.png');
 }
+
+@media (max-width:960px){
+    .news__delete-button{
+        top:0.5rem!important;
+        right:0.5rem!important;
+        bottom: 23.875rem!important;
+    }
+}

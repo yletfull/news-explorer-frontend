@@ -17,18 +17,9 @@
     }
 }
 
-@media (max-width:768px){
-    .articles-info{
-        
+@media (max-width: 625px){
+    .articles-info {
+        margin-left: 1rem;
     }
 }
 
-@media (max-width:625px){
-    .articles-info{
-        margin-top: 2rem!important;
-        margin-left: 0!important;
-        margin-bottom: 0!important;
-        height: 17rem;
-        width: 17rem;
-    }
-}

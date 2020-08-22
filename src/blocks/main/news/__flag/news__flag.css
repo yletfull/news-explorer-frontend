@@ -14,7 +14,7 @@
     background-image: url('~images/flag-hover.png');
 }
 
-@media (max-width:768px){
+@media (max-width:960px){
     .news__flag{
         top:0.5rem!important;
         right:0.5rem!important;

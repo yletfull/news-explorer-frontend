@@ -19,3 +19,11 @@
     align-items: center;
     color: #000000;
 }
+
+@media (max-width:960px){
+    .news__tags-place{
+        top:0.5rem!important;
+        left:0.5rem!important;
+        bottom: 23.875rem!important;
+    }
+}

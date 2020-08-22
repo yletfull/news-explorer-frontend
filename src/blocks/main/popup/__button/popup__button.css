@@ -16,3 +16,9 @@
     color: #B6BCBF;
     background: #E6E8EB;
 }
+
+@media (max-width: 455px){
+    .popup__button {
+        width: 100%!important;
+    }
+}

@@ -16,7 +16,8 @@
             <h1 class="header__logo-text">NewsExplorer</h1>
             <nav class="header__navigation">
                 <a href="#" class="header__nav-button header__nav-button_current">Главная</a>
-                <a href="./articles.html" class="header__nav-button header__nav-button_rectangle">Авторизоваться</a>
+                <a href="./articles.html" class="header__nav-button">Сохранённые статьи</a>
+                <a href="#" class="header__nav-button header__nav-button_rectangle">Авторизоваться</a>
             </nav>
         </header>
         <main class="main">
@@ -95,8 +96,8 @@
             <p class="footer__info">© 2020 Supersite, Powered by News API</p>
             <div class="footer__nav">
                 <div class="footer__links">
-                    <a class="footer__nav-button" href="">Главная</a>
-                    <a class="footer__nav-button" href="">Яндекс.практикум</a>
+                    <a class="footer__nav-button" href="./index.html">Главная</a>
+                    <a class="footer__nav-button" href="https://praktikum.yandex.ru">Яндекс.практикум</a>
                 </div>
                 <div class="footer__icons">
                     <a href="https://github.com/yletfull" class="footer__social-icon"><img src="<%=require('../images/GitHub.jpg')%>" alt="Github"></a>
@@ -135,6 +136,18 @@
                 <p class="popup__alter-action">или <a href="#">Войти</a></p>
             </div>
         </div>
+        <div class="mobile-menu mobile-menu_hidden">
+            <div class="mobile-menu_border">
+                <h1 class="mobile-menu_logo-text header__logo-text">NewsExplorer</h1>
+                <img src="<%=require('../images/close.svg')%>" alt="Закрыть" class="mobile-menu__close">
+            </div>
+            <nav class="mobile-menu__navigation">
+                <a href="./index.html" class="header__nav-button mobile-menu__nav-button">Главная</a>
+                <a href="./articles.html" class="header__nav-button mobile-menu__nav-button">Сохранённые статьи</a>
+                <a href="./" class="header__nav-button mobile-menu__nav-button  mobile-menu__nav-button_rectangle">Андрей</a>
+            </nav>
+            <div class="mobile-menu__background"></div>
+        </div>       
         <div class="preloader_hidden">
             <i class="preloader__circle_hidden"></i>
         </div>
