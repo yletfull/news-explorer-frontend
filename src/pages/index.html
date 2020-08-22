@@ -17,13 +17,13 @@
             <nav class="header__navigation">
                 <a href="#" class="header__nav-button header__nav-button_current">Главная</a>
                 <a href="./articles.html" class="header__nav-button">Сохранённые статьи</a>
-                <a href="#" class="header__nav-button header__nav-button_rectangle">Авторизоваться</a>
+                <a href="#" class="header__nav-button header__nav-button_rectangle" id="authorization-button">Авторизоваться</a>
             </nav>
         </header>
         <main class="main">
             <section class="search">
                 <div class="search__block">
-                    <h1 class="search__title">Что в мире творится?</h1>
+                    <h2 class="search__title">Что в мире творится?</h2>
                     <p class="search__subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
                     <form class="search__form" name="news-search-form">
                         <input type="text" class="input search__input" placeholder="Введите тему новости">
@@ -80,9 +80,7 @@
                 <button class="button news__button">Показать еще</button>
             </section>
             <section class="about-author">
-                <picture srcset="<%=require('../images/author-avatar.png')%>" type="image/webp">
                     <img src="<%=require('../images/author-avatar.png')%>" alt="Андрей Корляков" class="about-author_avatar">
-                </picture>
                 <div class="about-author__text-block">
                     <h2 class="about-author__title">Об авторе</h2>
                     <p class="about-author__subtitle">Меня зовут Андрей Корляков. Я начинающий веб-разработчик. Учусь на 3 курсе университета на теплоэнергетика. Тем не менее хочу поменять профессию и связать жизнь с разработкой, ведь это не только перспективно, но и по-настоящему интересно. </p>
@@ -106,7 +104,7 @@
             </div>
         </footer>
 
-        <div class="popup_hidden popup_login">
+        <div class="popup popup_hidden popup_login">
             <div class="popup__content">
                 <h2 class="popup__title">Вход</h2>
                 <img src="<%=require('../images/close.svg')%>" alt="Закрыть" class="popup__close">
@@ -117,10 +115,10 @@
                     <input class="input popup__input" type="password" placeholder="Введите пароль">
                     <button class="button popup__button">Войти</button>
                 </form>
-                <p class="popup__alter-action">или <a href="#">Зарегистрироваться</a></p>
+                <p class="popup__alter-action">или <a class="popup__alter-action_link" href="#">Зарегистрироваться</a></p>
             </div>
         </div>
-        <div class="popup_hidden popup_registration">
+        <div class="popup popup_hidden popup_registration">
             <div class="popup__content">
                 <h2 class="popup__title">Регистрация</h2>
                 <img src="<%=require('../images/close.svg')%>" alt="Закрыть" class="popup__close">
@@ -133,7 +131,7 @@
                     <input class="input popup__input" type="text" placeholder="Введите своё имя">
                     <button class="button popup__button">Зарегистрироваться</button>
                 </form>
-                <p class="popup__alter-action">или <a href="#">Войти</a></p>
+                <p class="popup__alter-action">или <a class="popup__alter-action_link" href="#">Войти</a></p>
             </div>
         </div>
         <div class="mobile-menu mobile-menu_hidden">
@@ -152,6 +150,6 @@
             <i class="preloader__circle_hidden"></i>
         </div>
     </div>
+    <script src="<%= htmlWebpackPlugin.files.js %>"></script>
 </body>
-<script src="<%= htmlWebpackPlugin.files.js %>"></script>
 </html>

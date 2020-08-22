@@ -13,7 +13,5 @@
     color: #1A1B22;
 }
 .news__button:hover{
-    background: #FFFFFF;
     opacity: 0.9;
-    border-radius: 80px;
 }
