@@ -1,40 +1,81 @@
 import '../css/main.css';
 
-// не читать, убьет!
+import Header from './components/Header';
+import constants from './constants/ConstantsMain';
 
-const authButton = document.querySelector('#authorization-button');
-const authForm = document.querySelector('.popup_login');
-const regForm = document.querySelector('.popup_registration');
-
-authButton.addEventListener('click', () => {
-  authForm.classList.remove('popup_hidden');
-
-  const closeButton = document.querySelector('.popup__close');
-  closeButton.addEventListener('click', () => {
-    authForm.classList.add('popup_hidden');
-  });
-
-  const altButton = document.querySelector('.popup__alter-action_link');
-  altButton.addEventListener('click', () => {
-    authForm.classList.add('popup_hidden');
-    regForm.classList.remove('popup_hidden');
-    const closeButton = document.querySelector('.popup__close');
-    closeButton.addEventListener('click', () => {
-      regForm.classList.add('popup_hidden');
-    });
-  });
+const header = new Header({
+  background: constants.header.background,
+  obj: constants.header.obj,
+  boxShadow: constants.header.boxShadow,
+  elementsColor: constants.header.elements.color,
+  loginButton: constants.header.elements.loginButton,
+  logoutIcon: constants.header.elements.logoutIcon,
+  filter: constants.header.elements.filter,
 });
 
-if (screen.width < 700) {
-  const nav = document.querySelector('.header__navigation');
-  nav.addEventListener('click', () => {
-    if (screen.width < 700) {
-        const menu = document.querySelector('.mobile-menu');
-        menu.classList.remove('mobile-menu_hidden');
-        const close = document.querySelector('.mobile-menu__close');
-        close.addEventListener('click',function(){
-            menu.classList.add('mobile-menu_hidden');
-        });
-    }   
-  });
-}
+ header.render({
+  isLoggedIn : true,
+  userName : 'Andrew',
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import Popup from './components/Popup';
+// import MobileMenu from './components/MobileMenu';
+
+// let currentOpenPopup = '';
+// const popupOpenButtons = document.querySelectorAll('#popup-open-button');
+
+// const popupListener = function () {
+//   for (const button of popupOpenButtons) {
+//     button.addEventListener('click', function () {
+//       const popup = document.querySelector(`.${this.dataset.popup}`);
+//       const closeButton = popup.querySelector('.popup__close');
+//       const entryButton = popup.querySelector('.popup__button_entry');
+//       if (currentOpenPopup) {
+//         currentOpenPopup.classList.add('popup_hidden');
+//       }
+//       currentOpenPopup = popup;
+//       new Popup({
+//         popup, closeButton, entryButton,
+//       }).open();
+//     });
+//   }
+// };
+// popupListener();
+
+// const mobileMenuListener = function () {
+//   const mobileMenuActivateWidth = 700;
+//   if (screen.width < mobileMenuActivateWidth) {
+//     const nav = document.querySelector('.header__navigation');
+//     const menu = document.querySelector('.mobile-menu');
+//     const closeButton = document.querySelector('.mobile-menu__close');
+//     nav.addEventListener('click', () => {
+//       if (screen.width < mobileMenuActivateWidth) {
+//         new MobileMenu({
+//           menu,
+//           closeButton,
+//         }).open();
+//       }
+//     });
+//   }
+// };
+// mobileMenuListener();
+
+
+

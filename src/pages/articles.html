@@ -14,10 +14,12 @@
     <div class="root">
         <header class="header">
             <h1 class="header__logo-text">NewsExplorer</h1>
-            <nav class="header__navigation">
+            <nav class="header__navigation" id="menu-open-button-mobile">
                 <a href="./index.html" class="header__nav-button">Главная</a>
-                <a href="./" class="header__nav-button header__nav-button_current">Сохранённые статьи</a>
-                <a href="./" class="header__nav-button header__nav-button_rectangle">Андрей&nbsp;<img src="<%=require('../images/logout.svg')%>" alt="Выйти" class="header__logout"></a>
+                <a href="#" class="header__nav-button header__nav-button_current">Сохранённые статьи</a>
+                <a href="#" class="header__nav-button header__nav-button_rectangle" id="popup-open-button" data-popup="popup_login">Авторизоваться
+                </a>
+                <img src="<%=require('../images/logout.svg')%>" alt="Выйти" class="header__logout-icon header__logout-icon_hidden">
             </nav>
         </header>
         <main class="main">

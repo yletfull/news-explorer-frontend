@@ -14,10 +14,12 @@
     <div class="root">
         <header class="header">
             <h1 class="header__logo-text">NewsExplorer</h1>
-            <nav class="header__navigation">
+            <nav class="header__navigation" id="menu-open-button-mobile">
                 <a href="#" class="header__nav-button header__nav-button_current">Главная</a>
                 <a href="./articles.html" class="header__nav-button">Сохранённые статьи</a>
-                <a href="#" class="header__nav-button header__nav-button_rectangle" id="authorization-button">Авторизоваться</a>
+                <a href="#" class="header__nav-button header__nav-button_rectangle" id="popup-open-button" data-popup="popup_login">Авторизоваться
+                </a>
+                <img src="<%=require('../images/logout.svg')%>" alt="Выйти" class="header__logout-icon header__logout-icon_hidden">
             </nav>
         </header>
         <main class="main">
@@ -113,9 +115,9 @@
                     <input class="input popup__input" type="text" placeholder="Введите почту">
                     <p class="popup__input-descriptor">Пароль</p>
                     <input class="input popup__input" type="password" placeholder="Введите пароль">
-                    <button class="button popup__button">Войти</button>
+                    <button class="button popup__button popup__button_entry">Войти</button>
                 </form>
-                <p class="popup__alter-action">или <a class="popup__alter-action_link" href="#">Зарегистрироваться</a></p>
+                <p class="popup__alter-action">или <a class="popup__alter-action_link" href="#" data-popup="popup_registration" id='popup-open-button'>Зарегистрироваться</a></p>
             </div>
         </div>
         <div class="popup popup_hidden popup_registration">
@@ -129,9 +131,9 @@
                     <input class="input popup__input" type="password" placeholder="Введите пароль">
                     <p class="popup__input-descriptor">Имя</p>
                     <input class="input popup__input" type="text" placeholder="Введите своё имя">
-                    <button class="button popup__button">Зарегистрироваться</button>
+                    <button class="button popup__button popup__button_entry">Зарегистрироваться</button>
                 </form>
-                <p class="popup__alter-action">или <a class="popup__alter-action_link" href="#">Войти</a></p>
+                <p class="popup__alter-action">или <a class="popup__alter-action_link" href="#" data-popup="popup_login" id='popup-open-button'>Войти</a></p>
             </div>
         </div>
         <div class="mobile-menu mobile-menu_hidden">

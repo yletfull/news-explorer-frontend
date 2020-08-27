@@ -1,7 +1,7 @@
 .header__nav-button_rectangle{
     margin: 1rem 2rem 1rem 0;
     padding: 1rem;
-    border: 1px solid #FFFFFF;
+    border: 1px solid;
     box-sizing: border-box;
     border-radius: 100px;   
 }

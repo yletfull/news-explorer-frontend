@@ -1,0 +1,9 @@
+
+.header__logout-icon{
+    margin-left: 0.3125rem;
+    /* -webkit-filter: invert(100%); */
+}
+
+.header__logout-icon_hidden{
+    display: none;
+}
