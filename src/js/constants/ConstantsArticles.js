@@ -10,4 +10,7 @@ export default {
       filter: 'none',
     },
   },
+  popups: {
+    popup_element: document.querySelector('.popup'),
+  },
 };

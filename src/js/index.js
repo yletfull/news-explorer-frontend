@@ -1,6 +1,7 @@
 import '../css/main.css';
 
 import Header from './components/Header';
+import Popup from './components/Popup';
 import constants from './constants/ConstantsMain';
 
 const header = new Header({
@@ -13,51 +14,28 @@ const header = new Header({
   filter: constants.header.elements.filter,
 });
 
- header.render({
-  isLoggedIn : true,
-  userName : 'Andrew',
-})
+header.render({
+  isLoggedIn: true,
+  userName: 'Andrew',
+});
 
+const popupOpenButtons = constants.popups.open_buttons;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import Popup from './components/Popup';
 // import MobileMenu from './components/MobileMenu';
 
-// let currentOpenPopup = '';
-// const popupOpenButtons = document.querySelectorAll('#popup-open-button');
-
-// const popupListener = function () {
-//   for (const button of popupOpenButtons) {
-//     button.addEventListener('click', function () {
-//       const popup = document.querySelector(`.${this.dataset.popup}`);
-//       const closeButton = popup.querySelector('.popup__close');
-//       const entryButton = popup.querySelector('.popup__button_entry');
-//       if (currentOpenPopup) {
-//         currentOpenPopup.classList.add('popup_hidden');
-//       }
-//       currentOpenPopup = popup;
-//       new Popup({
-//         popup, closeButton, entryButton,
-//       }).open();
-//     });
-//   }
-// };
-// popupListener();
+const popupListener = function (button) {
+  button.addEventListener('click', function () {
+    const popupTemplate = constants.popups.templates[`${this.dataset.popup}`];
+    const closeButton = constants.popups.close_button;
+    const entryButton = constants.popups.entry_button;
+    const { form } = constants.popups;
+    const alterActionButton = constants.popups.popup_alter_action_link;
+    new Popup({
+      popupTemplate, closeButton, entryButton, form, alterActionButton, popupListener,
+    }).open();
+  });
+};
+popupListener(popupOpenButtons[0]);
 
 // const mobileMenuListener = function () {
 //   const mobileMenuActivateWidth = 700;
@@ -76,6 +54,3 @@ const header = new Header({
 //   }
 // };
 // mobileMenuListener();
-
-
-

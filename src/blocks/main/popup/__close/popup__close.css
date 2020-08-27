@@ -1,15 +1,17 @@
 .popup__close{
     position: absolute;
-    top: -2.5rem;
-    right: -2.5rem;
+    top: -2.0rem;
+    right: -2.0rem;
     height: 1.375rem;
     width: 1.375rem;
     cursor: pointer;
+    background-image: url(~images/close.svg);
+    background-size: cover;
 }
 
 
-@media (max-width: 768px){
+ @media (max-width: 454px){
     .popup__close {
         display: none;
     }
-}
+} 

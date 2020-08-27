@@ -9,7 +9,6 @@ export default class Header {
       logoutIcon: this.logoutIcon,
       filter: this.filter,
     } = options);
-    console.log(this.filter)
   }
 
   render(props) {

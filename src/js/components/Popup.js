@@ -1,32 +1,32 @@
 export default class Popup {
   constructor(data) {
     ({
-      popup: this.popup,
-      closeButton: this.closeButton,
-      entryButton: this.entryButton,
+      popupTemplate: this.popupTemplate,
+      closeButton: this.closeButtonClass,
+      entryButton: this.entryButtonClass,
+      form: this.form,
+      alterActionButton: this.alterActionButtonLink,
+      popupListener: this.popupListener,
     } = data);
-    this.addEventListener = this.addEventListener.bind(this);
-    this.addEventListener();
+    this.root = document.querySelector('.root');
   }
 
   open() {
-    this.popup.classList.remove('popup_hidden');
+    this.setContent();
+    this.closeButton = this.popupElement.querySelector(this.closeButtonClass);
+    this.entryButton = this.popupElement.querySelector(this.entryButtonClass);
+    this.form = this.popupElement.querySelector(this.form);
+    this.alterActionButton = this.popupElement.querySelector(this.alterActionButtonLink);
+    this.addEventListener();
   }
 
-  close() {
-    this.popup.classList.add('popup_hidden');
+  getTemplate() {
+    const template = document.createElement('div');
+    template.classList.add('popup');
+    template.insertAdjacentHTML('afterbegin', this.popupTemplate);
+    return template;
   }
 
-  setContent(){
-    this.popup.insertAdjecentHTML('afterbegin', {
-      
-    })
-  }
-
-  clearContent(){
-
-  }
-  
   addEventListener() {
     if (this.closeButton) {
       this.closeButton.addEventListener('click', (event) => {
@@ -36,8 +36,26 @@ export default class Popup {
     if (this.entryButton) {
       this.entryButton.addEventListener('click', (event) => {
         event.preventDefault();
-       
       });
     }
+    if (this.alterActionButton) {
+      this.popupListener(this.alterActionButton);
+      this.alterActionButton.addEventListener('click', () => {
+        this.close();
+      });
+    }
+  }
+
+  close() {
+    this.clearContent();
+  }
+
+  setContent() {
+    this.popupElement = this.getTemplate();
+    this.root.appendChild(this.popupElement);
+  }
+
+  clearContent() {
+    this.popupElement.parentNode.removeChild(this.popupElement);
   }
 }
