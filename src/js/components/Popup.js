@@ -7,6 +7,8 @@ export default class Popup {
       form: this.form,
       alterActionButton: this.alterActionButtonLink,
       popupListener: this.popupListener,
+      errorText: this.errorText,
+      formValidator: this.formValidator,
     } = data);
     this.root = document.querySelector('.root');
   }
@@ -17,6 +19,7 @@ export default class Popup {
     this.entryButton = this.popupElement.querySelector(this.entryButtonClass);
     this.form = this.popupElement.querySelector(this.form);
     this.alterActionButton = this.popupElement.querySelector(this.alterActionButtonLink);
+    this.formValidator(this.form);
     this.addEventListener();
   }
 

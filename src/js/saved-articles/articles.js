@@ -1,6 +1,7 @@
 import '..//../css/articles.css';
 
 import Header from '..//components/Header';
+import Popup from '../components/Popup';
 import constants from '..//constants/ConstantsArticles';
 
 const header = new Header({
@@ -17,6 +18,24 @@ const header = new Header({
   isLoggedIn : true,
   userName : 'Andrew',
 })  
+
+const popupOpenButtons = constants.popups.open_buttons;
+
+
+const popupListener = function (button) {
+  button.addEventListener('click', function () {
+    const popupTemplate = constants.popups.templates[`${this.dataset.popup}`];
+    const closeButton = constants.popups.close_button;
+    const entryButton = constants.popups.entry_button;
+    const errorText = constants.popups.error_error_text;
+    const { form } = constants.popups;
+    const alterActionButton = constants.popups.popup_alter_action_link;
+    new Popup({
+      popupTemplate, closeButton, entryButton, form, alterActionButton, popupListener, errorText,
+    }).open();
+  });
+};
+popupListener(popupOpenButtons[0]);
 
 // const authButton = document.querySelector('#authorization-button');
 // const authForm = document.querySelector('.popup_login');

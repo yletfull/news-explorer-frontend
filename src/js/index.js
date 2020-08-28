@@ -2,6 +2,7 @@ import '../css/main.css';
 
 import Header from './components/Header';
 import Popup from './components/Popup';
+import Form from './components/Form';
 import constants from './constants/ConstantsMain';
 
 const header = new Header({
@@ -28,14 +29,24 @@ const popupListener = function (button) {
     const popupTemplate = constants.popups.templates[`${this.dataset.popup}`];
     const closeButton = constants.popups.close_button;
     const entryButton = constants.popups.entry_button;
+    const errorText = constants.popups.error_error_text;
     const { form } = constants.popups;
     const alterActionButton = constants.popups.popup_alter_action_link;
-    new Popup({
-      popupTemplate, closeButton, entryButton, form, alterActionButton, popupListener,
+    const popup = new Popup({
+      popupTemplate, closeButton, entryButton, form, alterActionButton, popupListener, errorText, formValidator
     }).open();
   });
 };
 popupListener(popupOpenButtons[0]);
+
+const formValidator = (form) => {
+    new Form({
+      form,
+       popupErrorClass: constants.form.popup_eror_class,
+       entryButtonClass: constants.form.entry_button_class,
+       inputErrorClass: constants.form.input_error_class,
+      });
+};
 
 // const mobileMenuListener = function () {
 //   const mobileMenuActivateWidth = 700;
