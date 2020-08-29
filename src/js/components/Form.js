@@ -15,11 +15,12 @@ export default class Form {
   }
 
   setServerError() {
-    this.form.querySelector(`.${this.popupErrorClass}`)
+    this.form.querySelector(`.${this.popupErrorClass}`);
   }
 
   inputErrorOpen(inputError) {
     inputError.classList.remove(`${this.inputErrorClass}_hidden`);
+    this.validCount++;
   }
 
   inputErrorShow(inputError) {
@@ -27,7 +28,6 @@ export default class Form {
   }
 
   _validateInputElement(input, type, inputError) {
-
     if (type === 'email' && validator.isEmail(input.value)) {
       return this.inputErrorShow(inputError);
     } if (type === 'name' && input.value.length >= 1 && input.value.length <= 12) {
@@ -44,13 +44,18 @@ export default class Form {
       const inputErrors = this.form.querySelectorAll(`.${this.inputErrorClass}`);
       const entryButton = this.form.querySelector(`.${this.entryButtonClass}`);
       const { type } = inputs[i].dataset;
+      this.triggerCount = 0;
+      this.currentInput;
       inputs[i].addEventListener('input', () => {
+        if (this.currentInput !== inputs[i]) { this.currentInput = inputs[i]; this.triggerCount++; }
         this._validateInputElement(inputs[i], type, inputErrors[i]);
         const hiddenInputErrors = this.form.querySelectorAll(`.${this.inputErrorClass}_hidden`);
-        if (inputErrors.length === hiddenInputErrors.length) { entryButton.classList.remove(`${this.entryButtonClass}_disable`) 
-        }else{
+        console.log(this.triggerCount);
+        if (inputErrors.length === hiddenInputErrors.length && inputErrors.length === this.triggerCount) {
+          entryButton.classList.remove(`${this.entryButtonClass}_disable`);
+        } else {
           entryButton.classList.add(`${this.entryButtonClass}_disable`);
-        };
+        }
       });
     }
   }
