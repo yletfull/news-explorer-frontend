@@ -10,50 +10,47 @@ export default class Form {
     } = data);
     this._validateForm();
     this.setServerError = this.setServerError.bind(this);
-    this.inputErrorOpen = this.inputErrorOpen.bind(this);
-    this.inputErrorShow = this.inputErrorShow.bind(this);
+    this._inputErrorOpen = this._inputErrorOpen.bind(this);
+    this._inputErrorShow = this._inputErrorShow.bind(this);
   }
 
   setServerError() {
     this.form.querySelector(`.${this.popupErrorClass}`);
   }
 
-  inputErrorOpen(inputError) {
+  _inputErrorOpen(inputError) {
     inputError.classList.remove(`${this.inputErrorClass}_hidden`);
-    this.validCount++;
   }
 
-  inputErrorShow(inputError) {
+  _inputErrorShow(inputError) {
     inputError.classList.add(`${this.inputErrorClass}_hidden`);
   }
 
-  _validateInputElement(input, type, inputError) {
+  _validateInputElement(input, type) {
     if (type === 'email' && validator.isEmail(input.value)) {
-      return this.inputErrorShow(inputError);
-    } if (type === 'name' && input.value.length >= 1 && input.value.length <= 12) {
-      return this.inputErrorShow(inputError);
+      return true;
+    } if (type === 'name' && input.value.length >= 2 && input.value.length <= 12) {
+      return true;
     } if (type === 'password' && input.value.length >= 8 && input.value.length <= 32) {
-      return this.inputErrorShow(inputError);
+      return true;
     }
-    this.inputErrorOpen(inputError);
+    return false;
   }
 
   _validateForm() {
-    const inputs = this.form.querySelectorAll('input');
+    let inputs = this.form.querySelectorAll('input');
+    this.triggerCount = 0;
+    this.currentInput = '';
     for (let i = 0; i < inputs.length; i++) {
+      const input = inputs[i];
       const inputErrors = this.form.querySelectorAll(`.${this.inputErrorClass}`);
       const entryButton = this.form.querySelector(`.${this.entryButtonClass}`);
       const { type } = inputs[i].dataset;
-      this.triggerCount = 0;
-      this.currentInput;
-      inputs[i].addEventListener('input', () => {
-        if (this.currentInput !== inputs[i]) { this.currentInput = inputs[i]; this.triggerCount++; }
-        this._validateInputElement(inputs[i], type, inputErrors[i]);
-        const hiddenInputErrors = this.form.querySelectorAll(`.${this.inputErrorClass}_hidden`);
-        console.log(this.triggerCount);
-        if (inputErrors.length === hiddenInputErrors.length && inputErrors.length === this.triggerCount) {
-          entryButton.classList.remove(`${this.entryButtonClass}_disable`);
-        } else {
+      input.addEventListener('input', () => {
+        const isValid = this._validateInputElement(input, type);
+        if (isValid) { this._inputErrorShow(inputErrors[i]); input.isValid = true; } else { this._inputErrorOpen(inputErrors[i]); input.isValid = false; }
+        inputs = Array.from(inputs);
+        if (inputs.every((input) => input.isValid === true)) { entryButton.classList.remove(`${this.entryButtonClass}_disable`); } else {
           entryButton.classList.add(`${this.entryButtonClass}_disable`);
         }
       });
