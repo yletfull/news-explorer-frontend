@@ -1,8 +1,10 @@
-import '..//../css/articles.css';
+import '../../css/articles.css';
 
-import Header from '..//components/Header';
+import Header from '../components/Header';
 import Popup from '../components/Popup';
-import constants from '..//constants/ConstantsArticles';
+import Form from '../components/Form';
+import constants from '../constants/ConstantsArticles';
+import templates from '../templates/Templates';
 
 const header = new Header({
   background: constants.header.background,
@@ -12,26 +14,33 @@ const header = new Header({
   loginButton: constants.header.elements.loginButton,
   logoutIcon: constants.header.elements.logoutIcon,
   filter: constants.header.elements.filter,
+  savedArticlesButton: constants.header.elements.saved_articles_button,
 });
 
- header.render({
-  isLoggedIn : true,
-  userName : 'Andrew',
-})  
+header.render({
+  isLoggedIn: true,
+  userName: 'Andrew',
+});
+
+const formValidator = (form) => new Form({
+  form,
+  popupErrorClass: constants.form.popup_eror_class,
+  entryButtonClass: constants.form.entry_button_class,
+  inputErrorClass: constants.form.input_error_class,
+});
 
 const popupOpenButtons = constants.popups.open_buttons;
 
-
 const popupListener = function (button) {
   button.addEventListener('click', function () {
-    const popupTemplate = constants.popups.templates[`${this.dataset.popup}`];
+    const popupTemplate = templates.popups[`${this.dataset.popup}`];
     const closeButton = constants.popups.close_button;
     const entryButton = constants.popups.entry_button;
     const errorText = constants.popups.error_error_text;
     const { form } = constants.popups;
     const alterActionButton = constants.popups.popup_alter_action_link;
     new Popup({
-      popupTemplate, closeButton, entryButton, form, alterActionButton, popupListener, errorText,
+      popupTemplate, closeButton, entryButton, form, alterActionButton, popupListener, errorText, formValidator,
     }).open();
   });
 };
@@ -70,6 +79,6 @@ popupListener(popupOpenButtons[0]);
 //         close.addEventListener('click',function(){
 //             menu.classList.add('mobile-menu_hidden');
 //         });
-//     }   
+//     }
 //   });
 // }

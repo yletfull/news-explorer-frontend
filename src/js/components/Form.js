@@ -12,10 +12,12 @@ export default class Form {
     this.setServerError = this.setServerError.bind(this);
     this._inputErrorOpen = this._inputErrorOpen.bind(this);
     this._inputErrorShow = this._inputErrorShow.bind(this);
+    this._getInfo = this._getInfo.bind(this);
   }
 
-  setServerError() {
-    this.form.querySelector(`.${this.popupErrorClass}`);
+  setServerError(error) {
+    const errorText = this.form.querySelector(`.${this.popupErrorClass}`);
+    errorText.textContent = error;
   }
 
   _inputErrorOpen(inputError) {
@@ -38,7 +40,8 @@ export default class Form {
   }
 
   _validateForm() {
-    let inputs = this.form.querySelectorAll('input');
+    this.inputs = this.form.querySelectorAll('input');
+    let { inputs } = this;
     this.triggerCount = 0;
     this.currentInput = '';
     for (let i = 0; i < inputs.length; i++) {
@@ -58,10 +61,10 @@ export default class Form {
   }
 
   _clear() {
-
+    this.inputs.forEach((input) => input.value = '');
   }
 
   _getInfo() {
-
+    this.inputs.forEach((input) => console.log(input.value));
   }
 }

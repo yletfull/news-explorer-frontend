@@ -1,28 +1,63 @@
 export default class Api {
   constructor(options) {
-    ({ origin: this.origin, path: this.path, token: this.token } = options);
-    this.baseUrl = `${this.origin}/${this.path}`;
-
-    this.getBaseUrl = () => this.baseUrl;
-  }
-
-  parseResponce(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Что-то пошло не так: ${res.status}`);
+    ({ origin: this.origin, isAuth: this.isAuth } = options);
+    this.baseUrl = `${this.origin}`;
   }
 
   getUserInfo() {
-    return fetch(`${this.baseUrl}/users/me`, {
+    fetch(`${this.baseUrl}/users/me`, {
+      method: 'GET',
       headers: {
-        authorization: this.token,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     })
-      .then((res) => this.parseResponce(res))
-      .catch((err) => {
-        throw err;
-      });
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .then((data) => {
+        localStorage.setItem('userName', data.user.name);
+      })
+      .catch((error) => error.json())
+      .then((error) => console.log(error.message))
+      .catch(() => {});
+  }
+
+  signin(data) {
+    fetch(`${this.baseUrl}/signin`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+      }),
+    })
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .then((data) => {
+        localStorage.setItem('token', data.token);
+        this.getUserInfo();
+      })
+      .catch((error) => error.json())
+      .then((error) => console.log(error.message))
+      .catch(() => {});
+  }
+
+  signup(data) {
+    fetch(`${this.baseUrl}/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        password: data.pass,
+      }),
+    })
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .then(() => true)
+      .catch((error) => error.json())
+      .then((error) => console.log(error.message))
+      .catch(() => {});
   }
 
   getCards() {

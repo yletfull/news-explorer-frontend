@@ -11,6 +11,10 @@
     text-align: center;
     text-decoration: none;
 }
+
+.header__nav-button_hidden{
+    display: none;
+}
 .header__nav-button:last-of-type{
     margin-right:6.5rem;
 }

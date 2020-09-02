@@ -8,6 +8,7 @@ export default class Header {
       loginButton: this.loginButton,
       logoutIcon: this.logoutIcon,
       filter: this.filter,
+      savedArticlesButton: this.savedArticlesButton,
     } = options);
   }
 
@@ -16,7 +17,9 @@ export default class Header {
     this.obj.style.color = this.elementsColor;
     this.obj.style.background = this.background;
     this.obj.style['box-shadow'] = this.boxShadow;
+    this.savedArticlesButton.classList.add('header__nav-button_hidden');
     if (isLoggedIn) {
+      this.savedArticlesButton.classList.remove('header__nav-button_hidden');
       this.loginButton.textContent = `${userName}`;
       this.loginButton.appendChild(this.logoutIcon);
       this.logoutIcon.classList.remove('header__logout-icon_hidden');
