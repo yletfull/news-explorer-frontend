@@ -14,7 +14,6 @@ export default class Header extends BaseComponent {
       savedArticlesButton: this.savedArticlesButton,
       isLoggedIn: this.isLoggedIn,
     } = options);
-    this.defaultLogBtnText = this.loginButton.textContent;
   }
 
   render(props) {
@@ -30,9 +29,7 @@ export default class Header extends BaseComponent {
       this.logoutIcon.classList.remove('header__logout-icon_hidden');
       this.logoutIcon.style['-webkit-filter'] = `${this.filter}`;
       this._setEventListener();
-      return;
     }
-    this.loginButton.textContent = this.defaultLogBtnText;
   }
 
   _setEventListener(){
@@ -42,8 +39,8 @@ export default class Header extends BaseComponent {
         event: 'click',
         callback: (event) => { 
           localStorage.clear(); 
-          this.isLoggedIn = false;
-          this.render(this.isLoggedIn, '')},
+          window.location.reload();
+        },
       },
     ]);
   }

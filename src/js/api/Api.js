@@ -5,7 +5,7 @@ export default class Api {
   }
 
   getUserInfo() {
-    fetch(`${this.baseUrl}/users/me`, {
+    return fetch(`${this.baseUrl}/users/me`, {
       method: 'GET',
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -21,7 +21,7 @@ export default class Api {
   }
 
   signin(data) {
-    fetch(`${this.baseUrl}/signin`, {
+    return fetch(`${this.baseUrl}/signin`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -37,13 +37,11 @@ export default class Api {
         this.getUserInfo();
         return 'autorized';
       })
-      .catch((error) => error.json())
-      .then((error) => console.log(error.message))
-      .catch(() => {});
+      .catch((error) => error.json());
   }
 
   signup(data) {
-    fetch(`${this.baseUrl}/signup`, {
+    return fetch(`${this.baseUrl}/signup`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -57,8 +55,6 @@ export default class Api {
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
       .then(() => 'registred')
       .catch((error) => error.json())
-      .then((error) => error ? console.log(error.message) : ' ')
-      .catch(() => {});
   }
 
   getCards() {

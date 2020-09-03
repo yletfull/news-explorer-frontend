@@ -9,10 +9,10 @@ export default class Form {
       inputErrorClass: this.inputErrorClass,
     } = data);
     this._validateForm();
-    this.setServerError = this.setServerError.bind(this);
     this._inputErrorOpen = this._inputErrorOpen.bind(this);
     this._inputErrorShow = this._inputErrorShow.bind(this);
-    this._getInfo = this._getInfo.bind(this);
+    this.getInfo = this.getInfo.bind(this);
+    this.setServerError = this.setServerError.bind(this);
   }
 
   setServerError(error) {
@@ -64,7 +64,7 @@ export default class Form {
     this.inputs.forEach((input) => input.value = '');
   }
 
-  _getInfo() {
+  getInfo() {
     return Array.from(this.inputs).map((el) => el);
   }
 }
