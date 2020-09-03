@@ -69,22 +69,17 @@ export default class Popup extends BaseComponent {
 
   sendData(event) {
     event.preventDefault();
-    this.getformInstance().setServerError('err');
     const data = this.getformInstance().getInfo();
     const promise = new Promise((resolve, reject) => {
      const res = this.api[`${event.target.dataset.buttonAction}`](data);
      res ? resolve(res) : reject('Ошибка сервера');
     })
-    promise.then((data) => {console.log(data)
-        if (data === 'autorized') { this.headRender(); this.close(); }
+    promise.then((data) => {
+        if (data === 'autorized') { this.headRender(); this.close(); window.location.reload();}
         if (data === 'registred') { this.close(); } 
-        else { Promise.reject(data) }
+        else { this.getformInstance().setServerError(data.message) }
       })
-      .catch((err) => {
-        // console.log(this.getformInstance)
-        this.getformInstance().setServerError(err);
-        
-      })
+      .catch((err) => this.getformInstance().setServerError(err.message))
   }
 
   clearContent() {

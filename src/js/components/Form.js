@@ -15,9 +15,10 @@ export default class Form {
     this.setServerError = this.setServerError.bind(this);
   }
 
-  setServerError(error) {
-    const errorText = this.form.querySelector(`.${this.popupErrorClass}`);
-    errorText.textContent = error;
+  async setServerError(error) {
+    const errorTextEl = this.form.querySelector(`.${this.popupErrorClass}`);
+    errorTextEl.textContent = error;
+    errorTextEl.classList.remove(`${this.popupErrorClass}_hidden`);
   }
 
   _inputErrorOpen(inputError) {

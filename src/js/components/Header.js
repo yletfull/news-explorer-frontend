@@ -1,4 +1,4 @@
-import BaseComponent from "./BaseComponent";
+import BaseComponent from './BaseComponent';
 
 export default class Header extends BaseComponent {
   constructor(options) {
@@ -32,13 +32,13 @@ export default class Header extends BaseComponent {
     }
   }
 
-  _setEventListener(){
+  _setEventListener() {
     super._setListeners([
       {
         element: this.loginButton,
         event: 'click',
-        callback: (event) => { 
-          localStorage.clear(); 
+        callback: (event) => {
+          localStorage.clear();
           window.location.reload();
         },
       },

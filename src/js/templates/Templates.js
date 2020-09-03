@@ -11,7 +11,7 @@ export default {
             <p class="popup__input-descriptor">Пароль</p>
             <input class="input popup__input" type="password" data-type="password" placeholder="Введите пароль">
             <p class="popup__input-error popup__input-error_hidden">Некорректный пароль</p>
-            <p class="popup__error popup__error_disable">Ошибка</p>
+            <p class="popup__error popup__error_hidden">Ошибка</p>
             <button class="button popup__button popup__button_disable popup__button_entry" data-button-action="signin">Войти</button>
         </form>
         <p class="popup__alter-action">или <a class="popup__alter-action_link" href="#" data-popup="popup_registration" id='popup-open-button'>Зарегистрироваться</a></p>
@@ -31,7 +31,7 @@ export default {
                       <p class="popup__input-descriptor">Имя</p>
                       <input class="input popup__input" data-type="name" type="text" placeholder="Введите своё имя">
                       <p class="popup__input-error popup__input-error_hidden">Некорректное имя</p>
-                      <p class="popup__error popup__error_disable"></p>
+                      <p class="popup__error popup__error_hidden"></p>
                       <button class="button popup__button popup__button_disable popup__button_entry" data-button-action="signup">Зарегистрироваться</button>
                   </form>
                   <p class="popup__alter-action">или <a class="popup__alter-action_link" href="#" data-popup="popup_login" id='popup-open-button'>Войти</a></p>

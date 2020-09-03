@@ -10,6 +10,6 @@
     line-height: 15px;
     color: #FF0000;    
 }
-.popup__error_disable{
+.popup__error_hidden{
     display: none;  
 }
