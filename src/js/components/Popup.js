@@ -15,9 +15,9 @@ export default class Popup extends BaseComponent {
       api: this.api,
       getformInstance: this.getformInstance,
       headRender: this.headRender,
-      // templates: this.templates
     } = data);
     this.root = document.querySelector('.root');
+    this.popupElement = this.getTemplate();
   }
 
   open() {
@@ -38,23 +38,29 @@ export default class Popup extends BaseComponent {
   }
 
   _setEventListener() {
-    super._setListeners([
-      {
-        element: this.closeButton,
-        event: 'click',
-        callback: (event) => { this.close(event); },
-      },
-      {
-        element: this.entryButton,
-        event: 'click',
-        callback: (event) => { this.sendData(event); },
-      },
-    ]);
+    if (this.closeButton) {
+      super._setListeners([
+        {
+          element: this.closeButton,
+          event: 'click',
+          callback: (event) => { this.close(event); },
+        }]);
+    }
+    if (this.entryButton) {
+      super._setListeners([
+        {
+          element: this.entryButton,
+          event: 'click',
+          callback: (event) => { this.sendData(event); },
+        }]);
+    }
     if (this.alterActionButton) {
-      this.popupOpenFunc(this.alterActionButton);
-      this.alterActionButton.addEventListener('click', () => {
-        this.close();
-      });
+      super._setListeners([
+        {
+          element: this.alterActionButton,
+          event: 'click',
+          callback: () => { this.close(); this.popupOpenFunc(this.alterActionButton.dataset.popup); },
+        }]);
     }
   }
 
@@ -71,15 +77,17 @@ export default class Popup extends BaseComponent {
     event.preventDefault();
     const data = this.getformInstance().getInfo();
     const promise = new Promise((resolve, reject) => {
-     const res = this.api[`${event.target.dataset.buttonAction}`](data);
-     res ? resolve(res) : reject('Ошибка сервера');
-    })
+      const res = this.api[`${event.target.dataset.buttonAction}`](data);
+      res ? resolve(res) : reject('Ошибка сервера');
+    });
     promise.then((data) => {
-        if (data === 'autorized') { this.headRender(); this.close(); window.location.reload();}
-        if (data === 'registred') { this.close(); } 
-        else { this.getformInstance().setServerError(data.message) }
-      })
-      .catch((err) => this.getformInstance().setServerError(err.message))
+      if (data === 'autorized') { this.headRender(); this.close(); window.location.reload(); }
+      if (data === 'registred') {
+        this.close();
+        this.popupOpenFunc('popup_success_registration');
+      } else { this.getformInstance().setServerError(data.message); }
+    })
+      .catch((err) => this.getformInstance().setServerError(err.message));
   }
 
   clearContent() {

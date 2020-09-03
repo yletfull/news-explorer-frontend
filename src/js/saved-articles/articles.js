@@ -5,6 +5,14 @@ import Popup from '../components/Popup';
 import Form from '../components/Form';
 import constants from '../constants/ConstantsArticles';
 import templates from '../templates/Templates';
+import Api from '../api/Api';
+
+const serverData = {
+  origin: 'http://localhost:3000',
+  isAuth: !!localStorage.getItem('token'),
+};
+
+const api = new Api(serverData);
 
 const header = new Header({
   background: constants.header.background,
@@ -15,36 +23,51 @@ const header = new Header({
   logoutIcon: constants.header.elements.logoutIcon,
   filter: constants.header.elements.filter,
   savedArticlesButton: constants.header.elements.saved_articles_button,
+  isLoggedIn: serverData.isAuth,
 });
 
-header.render({
-  isLoggedIn: true,
-  userName: 'Andrew',
+const headRender = () => header.render({
+  isLoggedIn: serverData.isAuth,
+  userName: localStorage.getItem('userName'),
 });
 
-const formValidator = (form) => new Form({
-  form,
-  popupErrorClass: constants.form.popup_eror_class,
-  entryButtonClass: constants.form.entry_button_class,
-  inputErrorClass: constants.form.input_error_class,
-});
+headRender();
+
+let formInstance;
+const formValidator = (form) => {
+  formInstance = new Form({
+    form,
+    popupErrorClass: constants.form.popup_eror_class,
+    entryButtonClass: constants.form.entry_button_class,
+    inputErrorClass: constants.form.input_error_class,
+  });
+};
+const getformInstance = () => formInstance;
 
 const popupOpenButtons = constants.popups.open_buttons;
 
-const popupListener = function (button) {
-  button.addEventListener('click', function () {
-    const popupTemplate = templates.popups[`${this.dataset.popup}`];
-    const closeButton = constants.popups.close_button;
-    const entryButton = constants.popups.entry_button;
-    const errorText = constants.popups.error_error_text;
-    const { form } = constants.popups;
-    const alterActionButton = constants.popups.popup_alter_action_link;
-    new Popup({
-      popupTemplate, closeButton, entryButton, form, alterActionButton, popupListener, errorText, formValidator,
-    }).open();
-  });
+const popupOpen = (popupName) => {
+  console.log(this)
+  const popupTemplate = templates.popups[`${popupName}`];
+  const closeButton = constants.popups.close_button;
+  const entryButton = constants.popups.entry_button;
+  const errorText = constants.popups.error_error_text;
+  const { form } = constants.popups;
+  const alterActionButton = constants.popups.popup_alter_action_link;
+  new Popup({
+    popupTemplate, closeButton, entryButton, form, alterActionButton, popupOpen, errorText, formValidator, api, getformInstance, headRender, templates,
+  }).open();
+}
+
+const popupOpenButtonSetListener = function (button) {
+  if (!serverData.isAuth) {
+    button.addEventListener('click', function () {
+      popupOpen(this.dataset.popup);
+    });
+  }
 };
-popupListener(popupOpenButtons[0]);
+popupOpenButtonSetListener(popupOpenButtons[0]);
+
 
 // const authButton = document.querySelector('#authorization-button');
 // const authForm = document.querySelector('.popup_login');

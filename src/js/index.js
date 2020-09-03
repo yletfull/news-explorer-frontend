@@ -13,19 +13,6 @@ const serverData = {
 };
 
 const api = new Api(serverData);
-// const signIn = (data) => api.signin(data);
-// const signUp = (data) => api.signup(data);
-// signIn({
-//   email: "one5640@yandexff.ua",
-//   password: "one5640",
-// });
-// signUp(
-//   {
-//     name: "Andreyf",
-//     email: "one5640@yandexff.com",
-//     pass: "one5640fffff"
-//   }
-// )
 
 const header = new Header({
   background: constants.header.background,
@@ -43,39 +30,41 @@ const headRender = () => header.render({
   isLoggedIn: serverData.isAuth,
   userName: localStorage.getItem('userName'),
 });
-
 headRender();
 
 let formInstance;
-let formValidator = (form) => {formInstance = new Form({
-  form,
-  popupErrorClass: constants.form.popup_eror_class,
-  entryButtonClass: constants.form.entry_button_class,
-  inputErrorClass: constants.form.input_error_class,
-});
-}
-const getformInstance = () => {
-  return formInstance;
+const formValidator = (form) => {
+  formInstance = new Form({
+    form,
+    popupErrorClass: constants.form.popup_eror_class,
+    entryButtonClass: constants.form.entry_button_class,
+    inputErrorClass: constants.form.input_error_class,
+  });
 };
+const getformInstance = () => formInstance;
 
 const popupOpenButtons = constants.popups.open_buttons;
 
-const popupOpen = function (button) {
-  if(!serverData.isAuth){
-  button.addEventListener('click', function () {
-    const popupTemplate = templates.popups[`${this.dataset.popup}`];
-    const closeButton = constants.popups.close_button;
-    const entryButton = constants.popups.entry_button;
-    const errorText = constants.popups.error_error_text;
-    const { form } = constants.popups;
-    const alterActionButton = constants.popups.popup_alter_action_link;
-    new Popup({
-      popupTemplate, closeButton, entryButton, form, alterActionButton, popupOpen, errorText, formValidator, api, getformInstance, headRender, templates,
-    }).open();
-  });
+const popupOpen = (popupName) => {
+  const popupTemplate = templates.popups[`${popupName}`];
+  const closeButton = constants.popups.close_button;
+  const entryButton = constants.popups.entry_button;
+  const errorText = constants.popups.error_error_text;
+  const { form } = constants.popups;
+  const alterActionButton = constants.popups.popup_alter_action_link;
+  new Popup({
+    popupTemplate, closeButton, entryButton, form, alterActionButton, popupOpen, errorText, formValidator, api, getformInstance, headRender, templates,
+  }).open();
+}
+
+const popupOpenBtnListener = function (button) {
+  if (!serverData.isAuth) {
+    button.addEventListener('click', function () {
+      popupOpen(this.dataset.popup);
+    });
   }
 };
-popupOpen(popupOpenButtons[0]);
+popupOpenBtnListener(popupOpenButtons[0]);
 
 // const successPopupOpen = function (templateName) {
 //   button.addEventListener('click', function () {
@@ -87,7 +76,6 @@ popupOpen(popupOpenButtons[0]);
 //     }).open();
 //   });
 // };
-
 
 // const dataPreloader = () => {
 

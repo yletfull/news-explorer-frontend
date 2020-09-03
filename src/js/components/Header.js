@@ -37,7 +37,7 @@ export default class Header extends BaseComponent {
       {
         element: this.loginButton,
         event: 'click',
-        callback: (event) => {
+        callback: () => {
           localStorage.clear();
           window.location.reload();
         },
