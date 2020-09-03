@@ -27,14 +27,15 @@ export default class Api {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
-        email: data.email,
-        password: data.password,
+        email: data[0].value,
+        password: data[1].value,
       }),
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
       .then((data) => {
         localStorage.setItem('token', data.token);
         this.getUserInfo();
+        return 'autorized';
       })
       .catch((error) => error.json())
       .then((error) => console.log(error.message))
@@ -48,15 +49,15 @@ export default class Api {
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
-        name: data.name,
-        email: data.email,
-        password: data.pass,
+        email: data[0].value,
+        password: data[1].value,
+        name: data[2].value,
       }),
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-      .then(() => true)
+      .then(() => 'registred')
       .catch((error) => error.json())
-      .then((error) => console.log(error.message))
+      .then((error) => error ? console.log(error.message) : ' ')
       .catch(() => {});
   }
 

@@ -6,7 +6,6 @@ import Form from './components/Form';
 import constants from './constants/ConstantsMain';
 import templates from './templates/Templates';
 import Api from './api/Api';
-import FormValidator from '../old/scripts/FormValidator';
 
 const serverData = {
   origin: 'http://localhost:3000',
@@ -37,16 +36,18 @@ const header = new Header({
   logoutIcon: constants.header.elements.logoutIcon,
   filter: constants.header.elements.filter,
   savedArticlesButton: constants.header.elements.saved_articles_button,
+  isLoggedIn: serverData.isAuth,
 });
 
-header.render({
+const headRender = () => header.render({
   isLoggedIn: serverData.isAuth,
   userName: localStorage.getItem('userName'),
 });
 
+headRender();
 
 let formInstance;
-const formValidator = (form) => {return formInstance = new Form({
+let formValidator = (form) => {formInstance = new Form({
   form,
   popupErrorClass: constants.form.popup_eror_class,
   entryButtonClass: constants.form.entry_button_class,
@@ -60,6 +61,7 @@ const getformInstance = () => {
 const popupOpenButtons = constants.popups.open_buttons;
 
 const popupOpen = function (button) {
+  if(!serverData.isAuth){
   button.addEventListener('click', function () {
     const popupTemplate = templates.popups[`${this.dataset.popup}`];
     const closeButton = constants.popups.close_button;
@@ -68,12 +70,23 @@ const popupOpen = function (button) {
     const { form } = constants.popups;
     const alterActionButton = constants.popups.popup_alter_action_link;
     new Popup({
-      popupTemplate, closeButton, entryButton, form, alterActionButton, popupOpen, errorText, formValidator, api, getformInstance ,
+      popupTemplate, closeButton, entryButton, form, alterActionButton, popupOpen, errorText, formValidator, api, getformInstance, headRender, templates,
     }).open();
   });
+  }
 };
 popupOpen(popupOpenButtons[0]);
 
+// const successPopupOpen = function (templateName) {
+//   button.addEventListener('click', function () {
+//     const popupTemplate = templates.popups[`${templateName}`];
+//     const closeButton = constants.popups.close_button;
+//     const alterActionButton = constants.popups.popup_alter_action_link;
+//     new Popup({
+//       popupTemplate, closeButton, entryButton, form, alterActionButton, popupOpen, errorText, formValidator, api, getformInstance, headRender, templates,
+//     }).open();
+//   });
+// };
 
 
 // const dataPreloader = () => {

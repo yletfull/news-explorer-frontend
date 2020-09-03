@@ -14,6 +14,8 @@ export default class Popup extends BaseComponent {
       formValidator: this.formValidator,
       api: this.api,
       getformInstance: this.getformInstance,
+      headRender: this.headRender,
+      // templates: this.templates
     } = data);
     this.root = document.querySelector('.root');
   }
@@ -45,7 +47,7 @@ export default class Popup extends BaseComponent {
       {
         element: this.entryButton,
         event: 'click',
-        callback: (event) => { this.sendData(event) },
+        callback: (event) => { this.sendData(event); },
       },
     ]);
     if (this.alterActionButton) {
@@ -65,14 +67,22 @@ export default class Popup extends BaseComponent {
     this.root.appendChild(this.popupElement);
   }
 
-  sendData(event){
+  sendData(event) {
     event.preventDefault();
-    console.log(this.getformInstance()._getInfo())
-    // const data = this.getData();
+    const data = this.getformInstance()._getInfo();
+    const promise = new Promise((resolve, reject) => {
+     const res = this.api[`${event.target.dataset.buttonAction}`](data);
+     res ? resolve(res) : reject('Промисс не срабоатал');
+    })
+    promise.then((data) => {
+        if (data === 'autorized') { this.headRender(); this.close; }
+        if (data === 'registred') { this.close; } 
+        else { this.getformInstance().serServerError(data); }
+      })
+      .catch((err) => {this.getformInstance().serServerError(err);})
   }
 
   clearContent() {
     this.popupElement.parentNode.removeChild(this.popupElement);
   }
-
 }

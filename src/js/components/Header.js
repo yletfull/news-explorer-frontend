@@ -1,5 +1,8 @@
-export default class Header {
+import BaseComponent from "./BaseComponent";
+
+export default class Header extends BaseComponent {
   constructor(options) {
+    super();
     ({
       background: this.background,
       obj: this.obj,
@@ -9,7 +12,9 @@ export default class Header {
       logoutIcon: this.logoutIcon,
       filter: this.filter,
       savedArticlesButton: this.savedArticlesButton,
+      isLoggedIn: this.isLoggedIn,
     } = options);
+    this.defaultLogBtnText = this.loginButton.textContent;
   }
 
   render(props) {
@@ -24,6 +29,22 @@ export default class Header {
       this.loginButton.appendChild(this.logoutIcon);
       this.logoutIcon.classList.remove('header__logout-icon_hidden');
       this.logoutIcon.style['-webkit-filter'] = `${this.filter}`;
+      this._setEventListener();
+      return;
     }
+    this.loginButton.textContent = this.defaultLogBtnText;
+  }
+
+  _setEventListener(){
+    super._setListeners([
+      {
+        element: this.loginButton,
+        event: 'click',
+        callback: (event) => { 
+          localStorage.clear(); 
+          this.isLoggedIn = false;
+          this.render(this.isLoggedIn, '')},
+      },
+    ]);
   }
 }

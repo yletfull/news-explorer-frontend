@@ -65,6 +65,6 @@ export default class Form {
   }
 
   _getInfo() {
-    this.inputs.forEach((input) => console.log(input.value));
+    return Array.from(this.inputs).map((el) => el);
   }
 }
