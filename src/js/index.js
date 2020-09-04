@@ -6,6 +6,8 @@ import Form from './components/Form';
 import constants from './constants/ConstantsMain';
 import templates from './templates/Templates';
 import Api from './api/Api';
+import NewsCardList from './components/NewsCardList';
+import NewsCard from './components/NewsCard';
 
 const serverData = {
   origin: 'http://localhost:3000',
@@ -46,21 +48,19 @@ const getformInstance = () => formInstance;
 const popupOpenButtons = constants.popups.open_buttons;
 
 const popupOpen = (popupName) => {
-  const { form } = constants.popups;
   new Popup({
     popupTemplate: templates.popups[`${popupName}`],
-    closeButton: constants.popups.close_button,
-    entryButton: constants.popups.entry_button,
-    form,
-    alterActionButton: constants.popups.popup_alter_action_link,
-    popupOpen,
-    errorText: constants.popups.error_error_text,
-    formValidator,
+    closeButton: constants.popups.close_button_class,
+    entryButton: constants.popups.entry_button_class,
+    rootClass: constants.root_class,
+    alterActionButton: constants.popups.popup_alter_action_link_class,
+    errorText: constants.popups.popup_error_text_class,
+    form: constants.popups.form_class,
     api,
-    getformInstance,
-    headRender,
     templates,
-    rootClass: constants.rootClass,
+    popupOpen,
+    formValidator,
+    getformInstance,
   }).open();
 };
 
@@ -72,3 +72,7 @@ const popupOpenBtnListener = function (button) {
   }
 };
 popupOpenBtnListener(popupOpenButtons[0]);
+
+// const cardlist = new cardlist({
+
+// })

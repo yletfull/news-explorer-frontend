@@ -21,10 +21,10 @@ export default class Popup extends BaseComponent {
 
   open() {
     this._setContent();
-    this.closeButton = this.popupElement.querySelector(this.closeButtonClass);
-    this.entryButton = this.popupElement.querySelector(this.entryButtonClass);
-    this.form = this.popupElement.querySelector(this.form);
-    this.alterActionButton = this.popupElement.querySelector(this.alterActionButtonLink);
+    this.closeButton = this.popupElement.querySelector(`.${this.closeButtonClass}`);
+    this.entryButton = this.popupElement.querySelector(`.${this.entryButtonClass}`);
+    this.form = this.popupElement.querySelector(`.${this.form}`);
+    this.alterActionButton = this.popupElement.querySelector(`.${this.alterActionButtonLink}`);
     if (this.form) { this.formValidator(this.form); }
     this._setHandlers();
   }
@@ -64,6 +64,7 @@ export default class Popup extends BaseComponent {
   }
 
   _close() {
+    super._clearListener();
     this._clearContent();
   }
 
