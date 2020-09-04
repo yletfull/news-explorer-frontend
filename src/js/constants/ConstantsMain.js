@@ -1,4 +1,5 @@
 export default {
+  rootClass: 'root',
   header: {
     obj: document.querySelector('header'),
     background: 'rgba(196, 196, 196, 0.01)',

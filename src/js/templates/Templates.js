@@ -37,7 +37,7 @@ export default {
                   <p class="popup__alter-action">или <a class="popup__alter-action_link" href="#" data-popup="popup_login" id='popup-open-button'>Войти</a></p>
      `,
     popup_success_registration: `
-        <div class="popup__content">
+        <div class="form popup__content">
             <h2 class="popup__title">Пользователь успешно зарегистрирован!</h2>
             <div class="popup__close"></div>
             <a class="popup__alter-action_link" href="#" data-popup="popup_login" id='popup-open-button'>Выполнить вход</a>

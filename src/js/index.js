@@ -46,16 +46,23 @@ const getformInstance = () => formInstance;
 const popupOpenButtons = constants.popups.open_buttons;
 
 const popupOpen = (popupName) => {
-  const popupTemplate = templates.popups[`${popupName}`];
-  const closeButton = constants.popups.close_button;
-  const entryButton = constants.popups.entry_button;
-  const errorText = constants.popups.error_error_text;
   const { form } = constants.popups;
-  const alterActionButton = constants.popups.popup_alter_action_link;
   new Popup({
-    popupTemplate, closeButton, entryButton, form, alterActionButton, popupOpen, errorText, formValidator, api, getformInstance, headRender, templates,
+    popupTemplate: templates.popups[`${popupName}`],
+    closeButton: constants.popups.close_button,
+    entryButton: constants.popups.entry_button,
+    form,
+    alterActionButton: constants.popups.popup_alter_action_link,
+    popupOpen,
+    errorText: constants.popups.error_error_text,
+    formValidator,
+    api,
+    getformInstance,
+    headRender,
+    templates,
+    rootClass: constants.rootClass,
   }).open();
-}
+};
 
 const popupOpenBtnListener = function (button) {
   if (!serverData.isAuth) {
@@ -65,38 +72,3 @@ const popupOpenBtnListener = function (button) {
   }
 };
 popupOpenBtnListener(popupOpenButtons[0]);
-
-// const successPopupOpen = function (templateName) {
-//   button.addEventListener('click', function () {
-//     const popupTemplate = templates.popups[`${templateName}`];
-//     const closeButton = constants.popups.close_button;
-//     const alterActionButton = constants.popups.popup_alter_action_link;
-//     new Popup({
-//       popupTemplate, closeButton, entryButton, form, alterActionButton, popupOpen, errorText, formValidator, api, getformInstance, headRender, templates,
-//     }).open();
-//   });
-// };
-
-// const dataPreloader = () => {
-
-// }
-
-// import MobileMenu from './components/MobileMenu';
-
-// const mobileMenuListener = function () {
-//   const mobileMenuActivateWidth = 700;
-//   if (screen.width < mobileMenuActivateWidth) {
-//     const nav = document.querySelector('.header__navigation');
-//     const menu = document.querySelector('.mobile-menu');
-//     const closeButton = document.querySelector('.mobile-menu__close');
-//     nav.addEventListener('click', () => {
-//       if (screen.width < mobileMenuActivateWidth) {
-//         new MobileMenu({
-//           menu,
-//           closeButton,
-//         }).open();
-//       }
-//     });
-//   }
-// };
-// mobileMenuListener();

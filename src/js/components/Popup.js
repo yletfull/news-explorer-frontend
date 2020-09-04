@@ -14,10 +14,9 @@ export default class Popup extends BaseComponent {
       formValidator: this.formValidator,
       api: this.api,
       getformInstance: this.getformInstance,
-      headRender: this.headRender,
+      rootClass: this.rootClass,
     } = data);
-    this.root = document.querySelector('.root');
-    this.popupElement = this.getTemplate();
+    this.root = document.querySelector(`.${this.rootClass}`);
   }
 
   open() {
@@ -26,8 +25,8 @@ export default class Popup extends BaseComponent {
     this.entryButton = this.popupElement.querySelector(this.entryButtonClass);
     this.form = this.popupElement.querySelector(this.form);
     this.alterActionButton = this.popupElement.querySelector(this.alterActionButtonLink);
-    this.formValidator(this.form);
-    this._setEventListener();
+    if (this.form) { this.formValidator(this.form); }
+    this._setHandlers();
   }
 
   getTemplate() {
@@ -37,7 +36,7 @@ export default class Popup extends BaseComponent {
     return template;
   }
 
-  _setEventListener() {
+  _setHandlers() {
     if (this.closeButton) {
       super._setListeners([
         {
@@ -81,7 +80,9 @@ export default class Popup extends BaseComponent {
       res ? resolve(res) : reject('Ошибка сервера');
     });
     promise.then((data) => {
-      if (data === 'autorized') { this.headRender(); this.close(); window.location.reload(); }
+      if (data === 'autorized') {
+        window.location.reload();
+      }
       if (data === 'registred') {
         this.close();
         this.popupOpenFunc('popup_success_registration');
