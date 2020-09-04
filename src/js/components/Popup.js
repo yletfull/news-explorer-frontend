@@ -20,7 +20,7 @@ export default class Popup extends BaseComponent {
   }
 
   open() {
-    this.setContent();
+    this._setContent();
     this.closeButton = this.popupElement.querySelector(this.closeButtonClass);
     this.entryButton = this.popupElement.querySelector(this.entryButtonClass);
     this.form = this.popupElement.querySelector(this.form);
@@ -29,7 +29,7 @@ export default class Popup extends BaseComponent {
     this._setHandlers();
   }
 
-  getTemplate() {
+  _getTemplate() {
     const template = document.createElement('div');
     template.classList.add('popup');
     template.insertAdjacentHTML('afterbegin', this.popupTemplate);
@@ -42,7 +42,7 @@ export default class Popup extends BaseComponent {
         {
           element: this.closeButton,
           event: 'click',
-          callback: (event) => { this.close(event); },
+          callback: (event) => { this._close(event); },
         }]);
     }
     if (this.entryButton) {
@@ -50,7 +50,7 @@ export default class Popup extends BaseComponent {
         {
           element: this.entryButton,
           event: 'click',
-          callback: (event) => { this.sendData(event); },
+          callback: (event) => { this._sendData(event); },
         }]);
     }
     if (this.alterActionButton) {
@@ -58,21 +58,21 @@ export default class Popup extends BaseComponent {
         {
           element: this.alterActionButton,
           event: 'click',
-          callback: () => { this.close(); this.popupOpenFunc(this.alterActionButton.dataset.popup); },
+          callback: () => { this._close(); this.popupOpenFunc(this.alterActionButton.dataset.popup); },
         }]);
     }
   }
 
-  close() {
-    this.clearContent();
+  _close() {
+    this._clearContent();
   }
 
-  setContent() {
-    this.popupElement = this.getTemplate();
+  _setContent() {
+    this.popupElement = this._getTemplate();
     this.root.appendChild(this.popupElement);
   }
 
-  sendData(event) {
+  _sendData(event) {
     event.preventDefault();
     const data = this.getformInstance().getInfo();
     const promise = new Promise((resolve, reject) => {
@@ -84,14 +84,14 @@ export default class Popup extends BaseComponent {
         window.location.reload();
       }
       if (data === 'registred') {
-        this.close();
+        this._close();
         this.popupOpenFunc('popup_success_registration');
       } else { this.getformInstance().setServerError(data.message); }
     })
       .catch((err) => this.getformInstance().setServerError(err.message));
   }
 
-  clearContent() {
+  _clearContent() {
     this.popupElement.parentNode.removeChild(this.popupElement);
   }
 }
