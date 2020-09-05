@@ -1,0 +1,16 @@
+.news__card-description{
+    max-height: 35.9375rem;
+    padding-bottom: 3.875rem;
+}
+
+@media (max-width:768px){
+    .news__card-description{
+        padding-bottom: 3rem;
+    }
+}
+
+@media (max-width:320px){
+    .news__card-description{
+        padding-bottom: 2.75rem;
+    }
+}

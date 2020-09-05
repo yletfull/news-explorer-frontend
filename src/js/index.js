@@ -15,13 +15,10 @@ const serverData = {
   isAuth: !!localStorage.getItem('token'),
 };
 
-
-
 const api = new MainApi(serverData);
 
 // api.getArticles()
 // .then((data) => console.log(data))
-
 
 const newsApi = new NewsApi({
   differenceDays: -7,
@@ -31,7 +28,6 @@ const newsApi = new NewsApi({
   apiKey: 'af5e79492c924fd4bbd647c59c1521b5',
 
 });
-
 
 const header = new Header({
   background: constants.header.background,
@@ -91,23 +87,27 @@ const popupOpenBtnListener = function (button) {
 popupOpenBtnListener(popupOpenButtons[0]);
 
 const cardlist = new NewsCardList({
- paceClass: constants.news.news_place_class,
- flagClass: constants.news.news_card_flag_class,
- iconClass: constants.news.news_card_icon_class,
- dateClass: constants.news.news_card_date_class,
- titleClass: constants.news.news_card_title_class,
- subtitleClass: constants.news.news_card_subtitle_class,
- sourceClass: constants.news.news_card_source_class,
- showMoreButtonClass: constants.news.news_button_show_more_class,
- templates,
-})
+  articleMaxOnPageSteep: 3,
+  paceClass: constants.news.news_place_class,
+  flagClass: constants.news.news_card_flag_class,
+  iconClass: constants.news.news_card_icon_class,
+  cardDescriptionsClass: constants.news.news_card_descriprions_class,
+  dateClass: constants.news.news_card_date_class,
+  cardPlaceClass: constants.news.news_card_place_class,
+  titleClass: constants.news.news_card_title_class,
+  subtitleClass: constants.news.news_card_subtitle_class,
+  sourceClass: constants.news.news_card_source_class,
+  showMoreButtonClass: constants.news.news_button_show_more_class,
+  errorLoadingMessage: constants.news.news_error_loading_message,
+  templates,
+});
 
 const renderNews = (articles) => {
   cardlist.renderResults(articles);
-}
+};
 const getNews = (keywords) => {
-  // cardlist.renderLoader();
+  cardlist.renderLoader();
   const articles = newsApi.getNews(keywords);
   renderNews(articles);
-}
-getNews('Путин')
+};
+getNews('Путин');

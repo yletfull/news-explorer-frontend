@@ -13,6 +13,7 @@
 @import url(./__flag/news__flag.css);
 @import url(./__help/news__help.css);
 @import url(./__find_title/news__find_title.css);
+@import url(./__card-description/news__card-description.css);
 
 .news{
     display: flex;

@@ -30,10 +30,13 @@ export default {
     news_place_class: 'news',
     news_card_flag_class: 'news__flag',
     news_card_icon_class: 'news__card-icon',
+    news_card_descriprions_class: 'news__card-description',
     news_card_date_class: 'news__date',
+    news_card_place_class: 'news__card-place',
     news_card_title_class: 'news__card-title',
     news_card_subtitle_class: 'news__card-subtitle',
     news_card_source_class: 'news__source',
     news_button_show_more_class: 'news__button',
+    news_error_loading_message: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.',
   },
 };

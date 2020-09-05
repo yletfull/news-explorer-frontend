@@ -32,7 +32,7 @@ export default class NewsApi {
         articles.keywords = keywords;
         return articles;
       })
-      .catch((err) => err.json());
+      .catch((err) => false);
   }
 
   getNowDate(date) {

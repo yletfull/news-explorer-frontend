@@ -7,13 +7,23 @@
     letter-spacing: 0.4px;
     text-transform: uppercase;
     color: #B6BCBF;
-    margin: 1.125rem 1.5rem 1.5rem 1.5rem;
+    margin-left: 1.5rem;
+    position: absolute;
+    bottom: 1.5rem;
     text-transform: uppercase;
     text-decoration: none;
 }
 
 @media (max-width:768px){
     .news__source{
-        margin: 0 1rem 1rem 1rem!important;
+        margin-left: 1rem;
+        bottom: 1.625rem;
+    }
+}
+
+@media (max-width:320px){
+    .news__source{
+        margin-left: 1rem;
+        bottom: 1rem;
     }
 }

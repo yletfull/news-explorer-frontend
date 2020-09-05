@@ -7,67 +7,91 @@ export default class NewsCardList extends BaseComponent {
       paceClass: this.paceClass,
       flagClass: this.flagClass,
       iconClass: this.iconClass,
+      cardDescriptionsClass: this.cardDescriptionsClass,
       dateClass: this.dateClass,
       titleClass: this.titleClass,
       subtitleClass: this.subtitleClass,
       sourceClass: this.sourceClass,
+      cardPlaceClass: this.cardPlaceClass,
       showMoreButtonClass: this.showMoreButtonClass,
+      errorLoadingMessage: this.errorLoadingMessage,
       templates: this.templates,
+      articleMaxOnPageSteep: this.articleMaxOnPage,
     } = data);
     this.cardRoot = document.querySelector(`.${this.paceClass}`);
     this.cardPlaceClear = this.cardPlaceClear.bind(this);
     this.renderResults = this.renderResults.bind(this);
-    this.showMore = this.showMore.bind(this);
     this.addCard = this.addCard.bind(this);
   }
 
   renderResults(data) {
-    // this.cardPlaceClear();
-    data.then((data) => data? this._renderCards(data) : this._renderError())
-
+    this.cardPlaceClear();
+    data.then((data) => {
+      if (data) { this.data = data; this._renderCards(); } else { this._renderError(this.errorLoadingMessage); }
+    });
   }
 
   renderLoader() {
-    this.cardRoot.insertAdjacentHTML('afterbegin', this._getTemplate('load_card_place'));
+    this.cardRoot.insertAdjacentHTML('beforeend', this._getTemplate('load_card_place'));
   }
 
-  _renderCards(data){
-      console.log(data)
-    const articles = data.articles;
+  _renderCards() {
+    this.articles = this.data.articles;
     this.cardRoot.insertAdjacentHTML('afterbegin', this._getTemplate('card_place'));
-    console.log(this.cardRoot)
-    this.cardPlace = this.cardRoot.querySelector('.news__card-place');
-    const showMoreButton = this.cardPlace.querySelector(`${this.showMoreButtonClass}`);
-    articles.forEach((article,index) => {
-        console.log(article)
-        this.cardPlace.insertAdjacentHTML('afterbegin', this._getTemplate('card'));
-        const cardIcon = this.cardPlace.querySelector(`.${this.iconClass}`);
-        const flagIcon = this.cardPlace.querySelector(`.${this.flagClass}`);
-        const cardDate = this.cardPlace.querySelector(`.${this.dateClass}`);
-        const cardTitle = this.cardPlace.querySelector(`.${this.titleClass}`);
-        const cardSubTitle = this.cardPlace.querySelector(`.${this.subtitleClass}`);
-        const cardSource = this.cardPlace.querySelector(`.${this.sourceClass}`);
-        cardIcon.setAttribute('src', article.urlToImage)
-        cardDate.textContent = article.publishedAt;
-        cardTitle.textContent = article.title;
-        cardSubTitle.textContent = article.description;
-        cardSource.textContent = article.source.name;
-    });
-    
-
+    this.cardPlace = this.cardRoot.querySelector(`.${this.cardPlaceClass}`);
+    this.showMoreButton = this.cardRoot.querySelector(`.${this.showMoreButtonClass}`);
+    this._startRender();
+    this._setHandlers();
   }
 
+  _startRender() {this.articles.forEach((article, index) => {
+    if (index < this.articleMaxOnPage) {
+      this.cardPlace.insertAdjacentHTML('beforeend', this._getTemplate('card'));
+      this.card = this.cardPlace.lastElementChild;
+      this.cardIcon = this.card.querySelector(`.${this.iconClass}`);
+      this.flagIcon = this.card.querySelector(`.${this.flagClass}`);
+      this.cardDescriptions = this.card.querySelector(`.${this.cardDescriptionsClass}`);
+      this.cardDate = this.card.querySelector(`.${this.dateClass}`);
+      this.cardTitle = this.card.querySelector(`.${this.titleClass}`);
+      this.cardSubTitle = this.card.querySelector(`.${this.subtitleClass}`);
+      this.cardSource = this.card.querySelector(`.${this.sourceClass}`);
+      this.cardIcon.setAttribute('src', article.urlToImage);
+      this.cardIcon.setAttribute('alt', article.title);
+      this.cardDate.textContent = article.publishedAt;
+      this. cardTitle.textContent = article.title;
+      this.cardSubTitle.textContent = article.description;
+      this.cardSource.textContent = article.source.name;
+      this. cardSource.setAttribute('href', article.url);
+      delete this.articles[index];
+      this.articles = this.articles.filter((article) => article !== null);
+    }
+  });
+  }
 
-  _renderError() {
+  _renderError(err) {
     this.cardRoot.insertAdjacentHTML('afterbegin', this._getTemplate('not_found_card_place'));
+    const errElement = this.cardRoot.querySelector('.news__not-found-subtitle');
+    errElement.textContent = err;
   }
 
-  cardPlaceClear(){
-    this.cardRoot.removeChild(this.cardRoot.firstChild);
+  cardPlaceClear() {
+    while (this.cardRoot.firstChild) {
+      this.cardRoot.removeChild(this.cardRoot.firstChild);
+    }
   }
 
-  showMore() {
+  _setHandlers() {
+    super._setListeners([
+      {
+        element: this.showMoreButton,
+        event: 'click',
+        callback: () => { this._showMore(); },
+      },
+    ]);
+  }
 
+  _showMore() {
+    this._startRender();
   }
 
   addCard(card) {
