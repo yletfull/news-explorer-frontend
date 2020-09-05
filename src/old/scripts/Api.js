@@ -3,9 +3,7 @@ export default class Api {
     ({ origin: this.origin, path: this.path, token: this.token } = options);
     this.baseUrl = `${this.origin}/${this.path}`;
 
-    this.getBaseUrl = () => {
-      return this.baseUrl;
-    }
+    this.getBaseUrl = () => this.baseUrl;
   }
 
   parseResponce(res) {
@@ -18,11 +16,11 @@ export default class Api {
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
       headers: {
-        authorization: this.token
-      }
+        authorization: this.token,
+      },
     })
-      .then(res => this.parseResponce(res))
-      .catch(err => {
+      .then((res) => this.parseResponce(res))
+      .catch((err) => {
         throw err;
       });
   }
@@ -31,10 +29,10 @@ export default class Api {
     return fetch(`${this.baseUrl}/cards`, {
       headers: {
         authorization: this.token,
-      }
+      },
     })
-      .then(res => this.parseResponce(res))
-      .catch(err => {
+      .then((res) => this.parseResponce(res))
+      .catch((err) => {
         throw err;
       });
   }
@@ -44,12 +42,12 @@ export default class Api {
       method: arg.method,
       headers: {
         authorization: this.token,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(arg)
+      body: JSON.stringify(arg),
     })
-      .then(res => this.parseResponce(res))
-      .catch(err => {
+      .then((res) => this.parseResponce(res))
+      .catch((err) => {
         throw err;
       });
   }
@@ -59,10 +57,10 @@ export default class Api {
       method: 'DELETE',
       headers: {
         authorization: this.token,
-      }
+      },
     })
-      .then(res => this.parseResponce(res))
-      .catch(err => {
+      .then((res) => this.parseResponce(res))
+      .catch((err) => {
         throw err;
       });
   }
@@ -71,13 +69,12 @@ export default class Api {
     return fetch(`${this.baseUrl}/cards/like/${arg.id}`, {
       method: arg.method,
       headers: {
-        authorization: this.token
-      }
+        authorization: this.token,
+      },
     })
-      .then(res => this.parseResponce(res))
-      .catch(err => {
+      .then((res) => this.parseResponce(res))
+      .catch((err) => {
         throw err;
       });
   }
-};
-
+}

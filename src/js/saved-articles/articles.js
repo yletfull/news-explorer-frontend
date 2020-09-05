@@ -2,7 +2,7 @@ import '../../css/articles.css';
 
 import Header from '../components/Header';
 import constants from '../constants/ConstantsArticles';
-import Api from '../api/Api';
+import Api from '../api/MainApi';
 
 const serverData = {
   origin: 'http://localhost:3000',

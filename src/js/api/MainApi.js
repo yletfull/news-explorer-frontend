@@ -4,7 +4,7 @@ export default class Api {
     this.baseUrl = `${this.origin}`;
   }
 
-  getUserInfo() {
+  getUserData() {
     return fetch(`${this.baseUrl}/users/me`, {
       method: 'GET',
       headers: {
@@ -18,6 +18,42 @@ export default class Api {
       .catch((error) => error.json())
       .then((error) => console.log(error.message))
       .catch(() => {});
+  }
+
+  getArticles() {
+    return fetch(`${this.baseUrl}/articles`, {
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .then((articles) => articles)
+      .catch((error) => error.json());
+  }
+
+  createArticle() {
+    return fetch(`${this.baseUrl}/articles`, {
+      method: 'POST',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .then((article) => article)
+      .catch((error) => error.json());
+  }
+
+  removeArticle(articleId) {
+    return fetch(`${this.baseUrl}/articles/${articleId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+      .then((res) => (res.ok ? res.json() : Promise.reject(res)))
+      .then((article) => article)
+      .catch((error) => error.json());
   }
 
   signin(data) {
@@ -34,7 +70,7 @@ export default class Api {
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
       .then((data) => {
         localStorage.setItem('token', data.token);
-        this.getUserInfo();
+        this.getUserData();
         return 'autorized';
       })
       .catch((error) => error.json());
@@ -54,7 +90,7 @@ export default class Api {
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
       .then(() => 'registred')
-      .catch((error) => error.json())
+      .catch((error) => error.json());
   }
 
   getCards() {

@@ -1,9 +1,9 @@
 export default class NewsCard {
-    constructor(){
-        // isL
-    }
+  constructor() {
+    // isL
+  }
 
-    renderIcon(){
+  renderIcon() {
 
-    }
+  }
 }
