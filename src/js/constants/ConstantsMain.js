@@ -39,4 +39,8 @@ export default {
     news_button_show_more_class: 'news__button',
     news_error_loading_message: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.',
   },
+  search_news:{
+    button_class:'search__button',
+    input_class:'search__input',
+  },
 };

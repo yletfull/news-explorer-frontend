@@ -9,6 +9,7 @@ import MainApi from './api/MainApi';
 import NewsApi from './api/NewsApi';
 import NewsCardList from './components/NewsCardList';
 import NewsCard from './components/NewsCard';
+import SearchNews from './components/SearchNews';
 
 const serverData = {
   origin: 'http://localhost:3000',
@@ -16,9 +17,6 @@ const serverData = {
 };
 
 const api = new MainApi(serverData);
-
-// api.getArticles()
-// .then((data) => console.log(data))
 
 const newsApi = new NewsApi({
   differenceDays: -7,
@@ -86,6 +84,8 @@ const popupOpenBtnListener = function (button) {
 };
 popupOpenBtnListener(popupOpenButtons[0]);
 
+const cardIcon = new NewsCard
+
 const cardlist = new NewsCardList({
   articleMaxOnPageSteep: 3,
   paceClass: constants.news.news_place_class,
@@ -106,8 +106,14 @@ const renderNews = (articles) => {
   cardlist.renderResults(articles);
 };
 const getNews = (keywords) => {
+  console.log(keywords)
   cardlist.renderLoader();
   const articles = newsApi.getNews(keywords);
   renderNews(articles);
 };
-getNews('Путин');
+
+const searchAddListener = new SearchNews({
+  buttonClass: constants.search_news.button_class,
+  inputClass: constants.search_news.input_class,
+  getNews,
+}).setHandlers();
