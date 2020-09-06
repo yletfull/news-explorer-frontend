@@ -25,11 +25,11 @@ export default class NewsApi {
     this.to = this.getNowDate(this.to);
   }
 
-  getNews(keywords) {
-    return fetch(`${this.url}q=${keywords}&from=${this.from}&to=${this.to}&sortBy=popularity&apiKey=${this.apiKey}&pageSize=${this.pageSize}`)
+  getNews(keyword) {
+    return fetch(`${this.url}q=${keyword}&from=${this.from}&to=${this.to}&sortBy=popularity&apiKey=${this.apiKey}&pageSize=${this.pageSize}`)
       .then((data) => (data ? data.json() : Promise.reject(res)))
       .then((articles) => {
-        articles.keywords = keywords;
+        articles.keyword = keyword;
         return articles;
       })
       .catch(() => false);

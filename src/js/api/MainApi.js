@@ -2,6 +2,7 @@ export default class Api {
   constructor(options) {
     ({ origin: this.origin, isAuth: this.isAuth } = options);
     this.baseUrl = `${this.origin}`;
+    this.createArticle = this.createArticle.bind(this);
   }
 
   getUserData() {
@@ -32,19 +33,24 @@ export default class Api {
       .catch((error) => error.json());
   }
 
-  createArticle() {
+  createArticle(data) {
     return fetch(`${this.baseUrl}/articles`, {
       method: 'POST',
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        keyword: data.keyword, title: data.title, text: data.content, source: data.source.name, link: data.url, image: data.urlToImage, date: data.publishedAt,
+      }),
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
       .then((article) => article)
-      .catch((error) => error.json());
+      .catch(() => false);
   }
 
-  removeArticle(articleId) {
+  removeArticle(data) {
+    const articleId = data.article._id;
     return fetch(`${this.baseUrl}/articles/${articleId}`, {
       method: 'DELETE',
       headers: {
@@ -53,7 +59,7 @@ export default class Api {
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
       .then((article) => article)
-      .catch((error) => error.json());
+      .catch(() => false);
   }
 
   signin(data) {
@@ -113,32 +119,6 @@ export default class Api {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(arg),
-    })
-      .then((res) => this.parseResponce(res))
-      .catch((err) => {
-        throw err;
-      });
-  }
-
-  deleteCard(arg) {
-    return fetch(`${this.baseUrl}/cards/${arg.id}`, {
-      method: 'DELETE',
-      headers: {
-        authorization: this.token,
-      },
-    })
-      .then((res) => this.parseResponce(res))
-      .catch((err) => {
-        throw err;
-      });
-  }
-
-  likeAddRemove(arg) {
-    return fetch(`${this.baseUrl}/cards/like/${arg.id}`, {
-      method: arg.method,
-      headers: {
-        authorization: this.token,
-      },
     })
       .then((res) => this.parseResponce(res))
       .catch((err) => {

@@ -5,6 +5,9 @@
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
 }
+.news__card-icon_not-found{
+    background-image: url(~images/not-found_v1.svg);
+}
 
 @media (min-width:960px) and (max-width:1250px){
     .news__card-icon{

@@ -18,6 +18,9 @@ const serverData = {
 
 const api = new MainApi(serverData);
 
+const addArticle = (article) => api.createArticle(article);
+const removeArticle = (article) => api.removeArticle(article);
+
 const newsApi = new NewsApi({
   differenceDays: -7,
   to: new Date(),
@@ -32,8 +35,8 @@ const header = new Header({
   obj: constants.header.obj,
   boxShadow: constants.header.boxShadow,
   elementsColor: constants.header.elements.color,
-  loginButton: constants.header.elements.loginButton,
-  logoutIcon: constants.header.elements.logoutIcon,
+  loginButton: constants.header.elements.login_button,
+  logoutIcon: constants.header.elements.logout_icon,
   filter: constants.header.elements.filter,
   savedArticlesButton: constants.header.elements.saved_articles_button,
   isLoggedIn: serverData.isAuth,
@@ -84,18 +87,24 @@ const popupOpenBtnListener = function (button) {
 };
 popupOpenBtnListener(popupOpenButtons[0]);
 
-const card = new NewsCard({
+const getCardInstance = ((data) => new NewsCard({
+  addArticle,
+  removeArticle,
+  isLoggedIn: serverData.isAuth,
+  newsHelpFieldClass: constants.news.news_help_field_class,
   flagClass: constants.news.news_card_flag_class,
+  flagActiveClass: constants.news.news_card_flag_active_class,
   iconClass: constants.news.news_card_icon_class,
   cardDescriptionsClass: constants.news.news_card_descriprions_class,
   dateClass: constants.news.news_card_date_class,
   titleClass: constants.news.news_card_title_class,
   subtitleClass: constants.news.news_card_subtitle_class,
   sourceClass: constants.news.news_card_source_class,
+  notFoundUrl: constants.links.news_not_found_icon_link,
   templates,
-})
+}).cardRender(data));
 
-const cardRender = (data) => card.cardRender(data);
+const cardRender = (data) => getCardInstance(data);
 
 const cardlist = new NewsCardList({
   articleMaxOnPageSteep: 3,

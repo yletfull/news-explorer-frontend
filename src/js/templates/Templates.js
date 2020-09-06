@@ -55,7 +55,7 @@ export default {
     card: `
         <img class="news__card-icon">
         <div class="news__flag"></div>
-        <div class="news__help_show">Войдите, чтобы сохранять статьи</div>
+        <div class="news__help news__help_show">Войдите, чтобы сохранять статьи</div>
         <div class="news__card-description">
             <p class="news__date"></p>
             <h3 class="news__card-title"></h3>
@@ -65,7 +65,7 @@ export default {
      `,
 
     not_found_card_place: `<div class="news news_empty">           
-            <img src="..//../images/not-found_v1.svg" alt="Не найдено" class="news__not-found-picture">
+            <div class="news__not-found-picture"></div>
             <h2 class="news__not-found-title">Ничего не найдено</h2>
             <p class="news__not-found-subtitle"></p>
         </div>`,
@@ -73,7 +73,7 @@ export default {
     <div>
         <i class="circle-preloader"></i>
         <p class="news__find_title">Идет поиск новостей</p>
-    </div>`
+    </div>`,
   },
 
 };

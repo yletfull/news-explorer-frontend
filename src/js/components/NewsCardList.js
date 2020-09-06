@@ -20,7 +20,7 @@ export default class NewsCardList extends BaseComponent {
   renderResults(data) {
     this.cardPlaceClear();
     data.then((data) => {
-      if (data) { this.data = data; this._renderCards(); } else { this._renderError(this.errorLoadingMessage); }
+      if (data) { this.data = data; this.keyword = data.keyword; this._renderCards(); } else { this._renderError(this.errorLoadingMessage); }
     });
   }
 
@@ -40,12 +40,17 @@ export default class NewsCardList extends BaseComponent {
   _startRender() {
     this.articles.forEach((article, index) => {
       if (index < this.articleMaxOnPage) {
+        article.keyword = this.keyword;
         this.card = this.cardRender(article);
         this._addCard();
         delete this.articles[index];
         this.articles = this.articles.filter((article) => article !== null);
-      }
+      } if (this.articles.length === 0) { this._showButton(); }
     });
+  }
+
+  _showButton() {
+    this.showMoreButton.classList.add(`${this.showMoreButtonClass}_hidden`);
   }
 
   _renderError(err) {

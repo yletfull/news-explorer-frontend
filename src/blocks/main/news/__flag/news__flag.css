@@ -8,9 +8,9 @@
     width: 2.5rem;
 }
 .news__flag_enable{
-    background-image: url('~images/flag-enable.png');
+    background-image: url('~images/flag-enable.png')!important;
 }
-.news__flag:hover{
+.news__flag_hover{
     background-image: url('~images/flag-hover.png');
 }
 
