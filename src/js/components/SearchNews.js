@@ -20,7 +20,7 @@ export default class SearchNews extends BaseComponent {
         element: document,
         event: 'keydown',
         callback: (event) => {
-          if (event.key === "Enter") { event.preventDefault(); if (this._validity()) { this.getNews(this.input.value); } }
+          if (event.key === 'Enter') { event.preventDefault(); if (this._validity()) { this.getNews(this.input.value); } }
         },
       },
       {
@@ -31,7 +31,7 @@ export default class SearchNews extends BaseComponent {
       {
         element: this.input,
         event: 'click',
-        callback: () => { if (this.input.value === this.errorText) { this.input.value = ''; this.input.blur()} },
+        callback: () => { if (this.input.value === this.errorText) { this.input.value = ''; this.input.blur(); } },
       },
 
     ]);

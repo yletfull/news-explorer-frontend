@@ -4,24 +4,17 @@ export default class NewsCardList extends BaseComponent {
   constructor(data) {
     super();
     ({
-      paceClass: this.paceClass,
-      flagClass: this.flagClass,
-      iconClass: this.iconClass,
-      cardDescriptionsClass: this.cardDescriptionsClass,
-      dateClass: this.dateClass,
-      titleClass: this.titleClass,
-      subtitleClass: this.subtitleClass,
-      sourceClass: this.sourceClass,
+      placeClass: this.placeClass,
       cardPlaceClass: this.cardPlaceClass,
       showMoreButtonClass: this.showMoreButtonClass,
       errorLoadingMessage: this.errorLoadingMessage,
       templates: this.templates,
       articleMaxOnPageSteep: this.articleMaxOnPage,
+      cardRender: this.cardRender,
     } = data);
-    this.cardRoot = document.querySelector(`.${this.paceClass}`);
+    this.cardRoot = document.querySelector(`.${this.placeClass}`);
     this.cardPlaceClear = this.cardPlaceClear.bind(this);
     this.renderResults = this.renderResults.bind(this);
-    this.addCard = this.addCard.bind(this);
   }
 
   renderResults(data) {
@@ -37,8 +30,8 @@ export default class NewsCardList extends BaseComponent {
 
   _renderCards() {
     this.cardRoot.insertAdjacentHTML('afterbegin', this._getTemplate('card_place'));
-    this.articles = this.data.articles;
     this.cardPlace = this.cardRoot.querySelector(`.${this.cardPlaceClass}`);
+    this.articles = this.data.articles;
     this.showMoreButton = this.cardRoot.querySelector(`.${this.showMoreButtonClass}`);
     this._startRender();
     this._setHandlers();
@@ -47,33 +40,10 @@ export default class NewsCardList extends BaseComponent {
   _startRender() {
     this.articles.forEach((article, index) => {
       if (index < this.articleMaxOnPage) {
-        this.cardPlace.insertAdjacentHTML('beforeend', this._getTemplate('card'));
-        this.card = this.cardPlace.lastElementChild;
-        this.cardIcon = this.card.querySelector(`.${this.iconClass}`);
-        this.flagIcon = this.card.querySelector(`.${this.flagClass}`);
-        this.cardDescriptions = this.card.querySelector(`.${this.cardDescriptionsClass}`);
-        this.cardDate = this.card.querySelector(`.${this.dateClass}`);
-        this.cardTitle = this.card.querySelector(`.${this.titleClass}`);
-        this.cardSubTitle = this.card.querySelector(`.${this.subtitleClass}`);
-        this.cardSource = this.card.querySelector(`.${this.sourceClass}`);
-
-        this.cardIcon.setAttribute('src', article.urlToImage);
-        this.cardIcon.setAttribute('alt', article.title);
-        this.cardDate.textContent = article.publishedAt;
-        this.cardTitle.textContent = article.title;
-        this.cardSubTitle.textContent = article.description;
-        this.cardSource.textContent = article.source.name;
-        this.url = article.url;
+        this.card = this.cardRender(article);
+        this._addCard();
         delete this.articles[index];
         this.articles = this.articles.filter((article) => article !== null);
-
-        super._setListeners([
-          {
-            element: this.card,
-            event: 'click',
-            callback: () => { document.location.href = this.url; },
-          },
-        ]);
       }
     });
   }
@@ -104,8 +74,8 @@ export default class NewsCardList extends BaseComponent {
     this._startRender();
   }
 
-  addCard(card) {
-    
+  _addCard() {
+    this.cardPlace.appendChild(this.card);
   }
 
   _getTemplate(templateName) {

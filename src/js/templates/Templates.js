@@ -52,7 +52,7 @@ export default {
             <button class="button news__button">Показать еще</button>
         `,
 
-    card: `<div class="news__card">
+    card: `
         <img class="news__card-icon">
         <div class="news__flag"></div>
         <div class="news__help_show">Войдите, чтобы сохранять статьи</div>
@@ -62,7 +62,7 @@ export default {
             <p class="news__card-subtitle"></p>
             <a href="" class="news__source"></a>
         </div>
-    </div>   `,
+     `,
 
     not_found_card_place: `<div class="news news_empty">           
             <img src="..//../images/not-found_v1.svg" alt="Не найдено" class="news__not-found-picture">

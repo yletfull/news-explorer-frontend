@@ -84,21 +84,26 @@ const popupOpenBtnListener = function (button) {
 };
 popupOpenBtnListener(popupOpenButtons[0]);
 
-const cardIcon = new NewsCard
-
-const cardlist = new NewsCardList({
-  articleMaxOnPageSteep: 3,
-  paceClass: constants.news.news_place_class,
+const card = new NewsCard({
   flagClass: constants.news.news_card_flag_class,
   iconClass: constants.news.news_card_icon_class,
   cardDescriptionsClass: constants.news.news_card_descriprions_class,
   dateClass: constants.news.news_card_date_class,
-  cardPlaceClass: constants.news.news_card_place_class,
   titleClass: constants.news.news_card_title_class,
   subtitleClass: constants.news.news_card_subtitle_class,
   sourceClass: constants.news.news_card_source_class,
+  templates,
+})
+
+const cardRender = (data) => card.cardRender(data);
+
+const cardlist = new NewsCardList({
+  articleMaxOnPageSteep: 3,
+  placeClass: constants.news.news_place_class,
   showMoreButtonClass: constants.news.news_button_show_more_class,
   errorLoadingMessage: constants.news.news_error_loading_message,
+  cardPlaceClass: constants.news.news_card_place_class,
+  cardRender,
   templates,
 });
 
@@ -106,7 +111,6 @@ const renderNews = (articles) => {
   cardlist.renderResults(articles);
 };
 const getNews = (keywords) => {
-  console.log(keywords)
   cardlist.renderLoader();
   const articles = newsApi.getNews(keywords);
   renderNews(articles);
