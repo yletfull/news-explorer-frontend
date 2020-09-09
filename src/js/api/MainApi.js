@@ -33,6 +33,7 @@ export default class Api {
         const keywords = [];
         articles.forEach((article) => {
           keywords.push(article.keyword);
+          article.key = article.keyword;
         });
         const data = {
           articles,

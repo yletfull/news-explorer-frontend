@@ -3,10 +3,10 @@ import '../../css/articles.css';
 import Header from '../components/Header';
 import constants from '../constants/ConstantsArticles';
 import Api from '../api/MainApi';
-import NewsCardListSavedArt from '../components/saved-articles/NewsCardList';
-import NewsCard from '../components/NewsCard';
 import templates from '../templates/Templates';
 import SavedArticlesInfo from '../components/saved-articles/SavedArticlesInfo';
+import NewsCard from '../components/saved-articles/NewsCard';
+import NewsCardList from '../components/saved-articles/NewsCardList';
 
 const serverData = {
   origin: 'http://localhost:3000',
@@ -16,7 +16,11 @@ const serverData = {
 const api = new Api(serverData);
 
 const getArticles = () => api.getArticles();
-const removeArticle = (article) => api.removeArticle(article);
+const removeArticle = (article) => {
+  const data = {};
+  data.article = article;
+  return api.removeArticle(data);
+};
 
 const header = new Header({
   background: constants.header.background,
@@ -50,9 +54,10 @@ const rendersavedArticlesInfo = (keywords) => savedArticlesInfo.render({
 const getCardInstance = ((data) => new NewsCard({
   removeArticle,
   isLoggedIn: serverData.isAuth,
+  cardDeleteButtonClass: constants.news.news__card_delete_button_class,
+  cardDeleteButtonActiveClass: 'news__delete-button_active',
+  cardTagPlaceClass: constants.news.news__card_tag_place_class,
   newsHelpFieldClass: constants.news.news_help_field_class,
-  flagClass: constants.news.news_card_flag_class,
-  flagActiveClass: constants.news.news_card_flag_active_class,
   iconClass: constants.news.news_card_icon_class,
   cardDescriptionsClass: constants.news.news_card_descriprions_class,
   dateClass: constants.news.news_card_date_class,
@@ -60,24 +65,28 @@ const getCardInstance = ((data) => new NewsCard({
   subtitleClass: constants.news.news_card_subtitle_class,
   sourceClass: constants.news.news_card_source_class,
   notFoundUrl: constants.links.news_not_found_icon_link,
-  templates,
+  cardClass: 'news__card',
+  cardTemplate: templates.news.saved_articles_card,
 }).cardRender(data));
 
 const cardRender = (data) => getCardInstance(data);
 
-const cardlist = new NewsCardListSavedArt({
+const cardlist = new NewsCardList({
   articleMaxOnPageSteep: 3,
   placeClass: constants.news.news_place_class,
   showMoreButtonClass: constants.news.news_button_show_more_class,
   errorLoadingMessage: constants.news.news_error_loading_message,
   cardPlaceClass: constants.news.news_card_place_class,
   cardRender,
-  templates,
   rendersavedArticlesInfo,
+  cardPlaceTemplate: templates.news.saved_articles_card_place,
+  loadCardsTemplate: templates.news.load_card_place,
+  notFoundCardsTemplate: templates.news.not_found_card_place,
 });
 
 const loader = () => {
   if (!serverData.isAuth) { window.location.replace('./index.html'); } else {
+    cardlist.cardPlaceClear();
     cardlist.renderLoader();
     const articles = getArticles();
     articles.then((articles) => cardlist.renderResults(articles));

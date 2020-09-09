@@ -16,9 +16,10 @@ export default class NewsCard extends BaseComponent {
       subtitleClass: this.subtitleClass,
       sourceClass: this.sourceClass,
       cardPlaceClass: this.cardPlaceClass,
-      templates: this.templates,
+      cardTemplate: this.cardTemplate,
       isLoggedIn: this.isLoggedIn,
       notFoundUrl: this.notFoundUrl,
+      cardClass: this.cardClass,
     } = data);
     this.isAdd = false;
   }
@@ -30,8 +31,7 @@ export default class NewsCard extends BaseComponent {
   cardRender(article) {
     this.article = article;
     this.card = document.createElement('div');
-    this.card.classList.add('news__card');
-    this.cardTemplate = this._getTemplate('card');
+    this.card.classList.add(this.cardClass);
     this.card.insertAdjacentHTML('beforeend', this.cardTemplate);
 
     this.cardIcon = this.card.querySelector(`.${this.iconClass}`);
@@ -55,10 +55,6 @@ export default class NewsCard extends BaseComponent {
 
     this._setHandlers();
     return this.card;
-  }
-
-  _getTemplate(templateName) {
-    return this.templates.news[templateName];
   }
 
   _setHandlers() {

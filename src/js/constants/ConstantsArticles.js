@@ -13,8 +13,8 @@ export default {
   },
   news: {
     news_place_class: 'news',
-    news_card_flag_class: 'news__flag',
-    news_card_flag_active_class: 'news__flag_enable',
+    news__card_delete_button_class: 'news__delete-button',
+    news__card_tag_place_class: 'news__tags-place',
     news_help_field_class: 'news__help',
     news_card_flag_disable_class: 'news__flag',
     news_card_icon_class: 'news__card-icon',

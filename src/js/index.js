@@ -101,7 +101,8 @@ const getCardInstance = ((data) => new NewsCard({
   subtitleClass: constants.news.news_card_subtitle_class,
   sourceClass: constants.news.news_card_source_class,
   notFoundUrl: constants.links.news_not_found_icon_link,
-  templates,
+  cardTemplate: templates.news.card,
+  cardClass: 'news__card',
 }).cardRender(data));
 
 const cardRender = (data) => getCardInstance(data);
@@ -113,7 +114,9 @@ const cardlist = new NewsCardList({
   errorLoadingMessage: constants.news.news_error_loading_message,
   cardPlaceClass: constants.news.news_card_place_class,
   cardRender,
-  templates,
+  cardPlaceTemplate: templates.news.card_place,
+  loadCardsTemplate: templates.news.load_card_place,
+  notFoundCardsTemplate: templates.news.not_found_card_place,
 });
 
 const getNews = (keywords) => {

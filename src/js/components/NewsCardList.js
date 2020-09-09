@@ -8,10 +8,12 @@ export default class NewsCardList extends BaseComponent {
       cardPlaceClass: this.cardPlaceClass,
       showMoreButtonClass: this.showMoreButtonClass,
       errorLoadingMessage: this.errorLoadingMessage,
-      templates: this.templates,
       articleMaxOnPageSteep: this.articleMaxOnPage,
       cardRender: this.cardRender,
       keywords: this.keywords,
+      cardPlaceTemplate: this.cardPlaceTemplate,
+      loadCardsTemplate: this.loadCardsTemplate,
+      notFoundCardsTemplate: this.notFoundCardsTemplate,
     } = data);
     this.cardRoot = document.querySelector(`.${this.placeClass}`);
     this.cardPlaceClear = this.cardPlaceClear.bind(this);
@@ -25,11 +27,11 @@ export default class NewsCardList extends BaseComponent {
   }
 
   renderLoader() {
-    this.cardRoot.insertAdjacentHTML('beforeend', this._getTemplate('load_card_place'));
+    this.cardRoot.insertAdjacentHTML('beforeend', this.loadCardsTemplate);
   }
 
   _renderCards() {
-    this.cardRoot.insertAdjacentHTML('afterbegin', this._getTemplate('card_place'));
+    this.cardRoot.insertAdjacentHTML('afterbegin', this.cardPlaceTemplate);
     this.cardPlace = this.cardRoot.querySelector(`.${this.cardPlaceClass}`);
     this.articles = this.data.articles;
     this.showMoreButton = this.cardRoot.querySelector(`.${this.showMoreButtonClass}`);
@@ -53,7 +55,7 @@ export default class NewsCardList extends BaseComponent {
   }
 
   _renderError(err) {
-    this.cardRoot.insertAdjacentHTML('afterbegin', this._getTemplate('not_found_card_place'));
+    this.cardRoot.insertAdjacentHTML('afterbegin', this.notFoundCardsTemplate);
     const errElement = this.cardRoot.querySelector('.news__not-found-subtitle');
     errElement.textContent = err;
   }

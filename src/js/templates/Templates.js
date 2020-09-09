@@ -52,11 +52,19 @@ export default {
             <button class="button news__button">Показать еще</button>
         `,
     saved_articles_card_place: `
-        <h2 class="news__title">Результаты поиска</h2>
         <div class="news__card-place">            
         </div>
         <button class="button news__button">Показать еще</button>
     `,
+    saved_articles_card: `                    
+    <img class="news__card-icon">
+        <div class="news__delete-button"></div>
+        <div class="news__tags-place"></div>
+        <div class="news__help news__help_show">Убрать из сохранённых</div>
+        <p class="news__date"></p>
+        <h3 class="news__card-title"></h3>
+        <p class="news__card-subtitle"></p>
+        <a href="" class="news__source"></a> `,
     card: `
         <img class="news__card-icon">
         <div class="news__flag"></div>
