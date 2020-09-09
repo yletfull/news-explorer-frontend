@@ -13,9 +13,9 @@ export default {
   },
   news: {
     news_place_class: 'news',
-    news_card_delete_button: 'news__delete-button',
-    news_card_tag_place: 'news__tags-place',
+    news_card_flag_class: 'news__flag',
     news_card_flag_active_class: 'news__flag_enable',
+    news_help_field_class: 'news__help',
     news_card_flag_disable_class: 'news__flag',
     news_card_icon_class: 'news__card-icon',
     news_card_descriprions_class: 'news__card-description',
@@ -26,5 +26,16 @@ export default {
     news_card_source_class: 'news__source',
     news_button_show_more_class: 'news__button',
     news_error_loading_message: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.',
+  },
+  search_news: {
+    button_class: 'search__button',
+    input_class: 'search__input',
+  },
+  links: {
+    news_not_found_icon_link: 'https://downloader.disk.yandex.ru/preview/70a2ec826946021705059720de575bcd81ae9fc7b8f9d46f671cfcba0d6302ea/5f5524ba/wvS0-PpvDeSPVqqKQptjPtGQ5fVboqM2yVvh9xQumefCZKdEv6q4GDyQ3uZSc1iF2ftC1_6lFntToqqfqsir3A==?uid=0&filename=NOT_FOUN_IMAGE.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&tknv=v2&owner_uid=1133010978&size=2048x2048',
+  },
+  saved_articles: {
+    subtitleClass: 'articles-info__subtitle',
+    keywordsClass: 'articles-info__keywords',
   },
 };

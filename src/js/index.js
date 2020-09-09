@@ -116,16 +116,13 @@ const cardlist = new NewsCardList({
   templates,
 });
 
-const renderNews = (articles) => {
-  cardlist.renderResults(articles);
-};
 const getNews = (keywords) => {
   cardlist.renderLoader();
   const articles = newsApi.getNews(keywords);
-  renderNews(articles);
+  articles.then((articles) => cardlist.renderResults(articles));
 };
 
-const searchAddListener = new SearchNews({
+new SearchNews({
   buttonClass: constants.search_news.button_class,
   inputClass: constants.search_news.input_class,
   getNews,

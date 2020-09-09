@@ -29,11 +29,24 @@ export default class Api {
       },
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-      .then((articles) => articles)
-      .catch((error) => error.json());
+      .then((articles) => {
+        const keywords = [];
+        articles.forEach((article) => {
+          keywords.push(article.keyword);
+        });
+        const data = {
+          articles,
+          keywords,
+        };
+        return data;
+      })
+      .catch(() => false);
   }
 
   createArticle(data) {
+    const {
+      keyword, title, description, source, url, urlToImage, publishedAt,
+    } = data;
     return fetch(`${this.baseUrl}/articles`, {
       method: 'POST',
       headers: {
@@ -41,7 +54,7 @@ export default class Api {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        keyword: data.keyword, title: data.title, text: data.content, source: data.source.name, link: data.url, image: data.urlToImage, date: data.publishedAt,
+        keyword, title, description, source: source.name, url, urlToImage, publishedAt,
       }),
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))

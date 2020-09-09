@@ -69,7 +69,7 @@ export default class NewsCard extends BaseComponent {
         callback: () => { document.location.href = this.url; },
       },
     ]);
-    if (this.isLoggedIn && !this.isAdd) {
+    if (this.isLoggedIn && !this.isAdd && this.addArticle) {
       super._setListeners([
         {
           element: this.flagIcon,
@@ -87,7 +87,7 @@ export default class NewsCard extends BaseComponent {
         {
           element: this.flagIcon,
           event: 'mouseover',
-          callback: () => { console.log('da'); this.flagIcon.classList.add(`${this.flagClass}_hover`); },
+          callback: () => { this.flagIcon.classList.add(`${this.flagClass}_hover`); },
         },
       ]);
     } if (this.isLoggedIn) {
@@ -118,6 +118,5 @@ export default class NewsCard extends BaseComponent {
         },
       ]);
     }
-
   }
 }

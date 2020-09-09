@@ -51,7 +51,12 @@ export default {
             </div>
             <button class="button news__button">Показать еще</button>
         `,
-
+    saved_articles_card_place: `
+        <h2 class="news__title">Результаты поиска</h2>
+        <div class="news__card-place">            
+        </div>
+        <button class="button news__button">Показать еще</button>
+    `,
     card: `
         <img class="news__card-icon">
         <div class="news__flag"></div>

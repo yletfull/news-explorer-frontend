@@ -11,17 +11,17 @@ export default class NewsCardList extends BaseComponent {
       templates: this.templates,
       articleMaxOnPageSteep: this.articleMaxOnPage,
       cardRender: this.cardRender,
+      keywords: this.keywords,
     } = data);
     this.cardRoot = document.querySelector(`.${this.placeClass}`);
     this.cardPlaceClear = this.cardPlaceClear.bind(this);
     this.renderResults = this.renderResults.bind(this);
+    this.currentArticleInd = 0;
   }
 
   renderResults(data) {
     this.cardPlaceClear();
-    data.then((data) => {
-      if (data) { this.data = data; this.keyword = data.keyword; this._renderCards(); } else { this._renderError(this.errorLoadingMessage); }
-    });
+    if (data) { this.data = data; this.keyword = data.keyword; this._renderCards(); } else { this._renderError(this.errorLoadingMessage); }
   }
 
   renderLoader() {
@@ -38,15 +38,14 @@ export default class NewsCardList extends BaseComponent {
   }
 
   _startRender() {
-    this.articles.forEach((article, index) => {
-      if (index < this.articleMaxOnPage) {
-        article.keyword = this.keyword;
-        this.card = this.cardRender(article);
-        this._addCard();
-        delete this.articles[index];
-        this.articles = this.articles.filter((article) => article !== null);
-      } if (this.articles.length === 0) { this._showButton(); }
-    });
+    while (this.currentArticleInd < this.articles.length && this.currentArticleInd < this.articleMaxOnPage) {
+      this.article = this.articles[this.currentArticleInd];
+      this.article.keyword = this.keyword;
+      this.card = this.cardRender(this.article);
+      this._addCard();
+      this.currentArticleInd++;
+    }
+    if (this.currentArticleInd === this.articles.length) { this._showButton(); }
   }
 
   _showButton() {
@@ -76,6 +75,7 @@ export default class NewsCardList extends BaseComponent {
   }
 
   _showMore() {
+    this.articleMaxOnPage += this.articleMaxOnPage;
     this._startRender();
   }
 
