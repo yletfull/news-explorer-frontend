@@ -45,8 +45,6 @@ const formValidator = (form) => {
 };
 const getformInstance = () => formInstance;
 
-const popupOpenButtons = constants.popups.open_buttons;
-
 const popupOpen = (popupName) => {
   new Popup({
     popupTemplate: templates.popups[`${popupName}`],
@@ -66,12 +64,12 @@ const popupOpen = (popupName) => {
 
 const popupOpenBtnListener = function (button) {
   if (!serverData.isAuth) {
-    button.addEventListener('click', function () {
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
       popupOpen(this.dataset.popup);
     });
   }
 };
-
 
 const headerData = {
   headerBtnHiddenClass: constants.header.elements.hidden_button_class,
@@ -108,7 +106,6 @@ const headRender = (() => {
 }
 );
 headRender();
-
 
 const getCardInstance = ((data) => new NewsCard({
   addArticle,

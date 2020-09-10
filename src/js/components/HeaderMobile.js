@@ -18,8 +18,20 @@ export default class HeaderMobile extends Header {
     this.rootElement.appendChild(this.menu);
     this.loginButton = this.menu.querySelector(`.${this.loginButtonClass}`);
     this.loginButton.textContent = 'Авторизоваться';
+    super._setListeners([
+      {
+        element: this.closeButton,
+        event: 'click',
+        callback: () => {
+          this._mobileMenuRemove();
+        },
+      },
+    ]);
+    if (this.popupOpenBtnListener) {
+      this.popupOpenBtnListener(this.loginButton);
+    }
     if (this.isLoggedIn) {
-        this.savedArticlesButton.classList.remove(`${this.headerBtnHiddenClass}`);
+      this.savedArticlesButton.classList.remove(`${this.headerBtnHiddenClass}`);
       this.loginButton.textContent = `${this.userName}`;
       this.loginButton.appendChild(this.logoutIcon);
       this._setHandlers();
@@ -32,16 +44,18 @@ export default class HeaderMobile extends Header {
   }
 
   _setHandlers() {
-    super._setListeners([
-      {
-        element: this.loginButton,
-        event: 'click',
-        callback: () => {
-          localStorage.clear();
-          window.location.reload();
+    if (this.isLoggedIn) {
+      super._setListeners([
+        {
+          element: this.loginButton,
+          event: 'click',
+          callback: () => {
+            localStorage.clear();
+            window.location.reload();
+          },
         },
-      },
-    ]);
+      ]);
+    }
   }
 
   openBtnAddListener(props) {

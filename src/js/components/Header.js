@@ -18,7 +18,7 @@ export default class Header extends BaseComponent {
       isLoggedIn: this.isLoggedIn,
       mobileMenuTemplate: this.mobileMenuTemplate,
       headerBtnHiddenClass: this.headerBtnHiddenClass,
-      popupOpenBtnListener: this.popupOpenBtnListener = null,
+      popupOpenBtnListener: this.popupOpenBtnListener = false,
     } = options);
     this.rootElement = document.querySelector(`.${this.rootElementClass}`);
     this.header = this.rootElement.querySelector(`.${this.headerClass}`);
@@ -36,7 +36,7 @@ export default class Header extends BaseComponent {
     this.header.style.background = this.background;
     this.header.style.boxShadow = this.boxShadow;
     this.savedArticlesButton.classList.add(`${this.headerBtnHiddenClass}`);
-    if (this.popupOpenBtnListener) {
+    if (!this.isLoggedIn && this.popupOpenBtnListener) {
       this.popupOpenBtnListener(this.loginButton);
     }
     if (this.isLoggedIn) {

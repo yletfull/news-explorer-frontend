@@ -26,7 +26,6 @@ const removeArticle = (article) => {
   return api.removeArticle(data);
 };
 
-
 const headerData = {
   headerBtnHiddenClass: constants.header.elements.hidden_button_class,
   background: constants.header.background,
@@ -63,9 +62,6 @@ const headRender = (() => {
 }
 );
 headRender();
-
-
-
 
 const savedArticlesInfo = new SavedArticlesInfo({
   savedArticlesSubtitleClass: constants.saved_articles.subtitleClass,
