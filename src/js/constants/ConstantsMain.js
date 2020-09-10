@@ -1,14 +1,15 @@
 export default {
   root_class: 'root',
   header: {
-    obj: document.querySelector('header'),
+    class: 'header',
     background: 'rgba(196, 196, 196, 0.01)',
     box_shadow: 'inset 0px -1px 0px rgba(255, 255, 255, 0.2)',
     elements: {
       color: '#FFFFFF',
-      saved_articles_button: document.querySelector('.header__nav-button_saved-articles'),
-      login_button: document.querySelector('.header__nav-button_rectangle'),
-      logout_icon: document.querySelector('.header__logout-icon'),
+      hidden_button_class: 'header__nav-button_hidden',
+      login_button_class: 'header__nav-button_rectangle',
+      saved_articles_button_class: 'header__nav-button_saved-articles',
+      logout_icon_class: 'header__logout-icon',
       filter: 'invert(100%)',
     },
     mobile_menu: {

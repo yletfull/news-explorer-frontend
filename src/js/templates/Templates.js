@@ -96,8 +96,8 @@ export default {
         </div>
         <nav class="mobile-menu__navigation">
             <a href="./index.html" class="header__nav-button mobile-menu__nav-button">Главная</a>
-            <a href="./articles.html" class="header__nav-button mobile-menu__nav-button">Сохранённые статьи</a>
-            <a href="./" class="header__nav-button mobile-menu__nav-button  mobile-menu__nav-button_rectangle" data-popup="popup_login"></a>
+            <a href="./articles.html" class="header__nav-button mobile-menu__nav-button header__nav-button_saved-articles header__nav-button_saved-articles_hidden">Сохранённые статьи</a>
+            <a href="./" class="header__nav-button mobile-menu__nav-button header__nav-button_rectangle mobile-menu__nav-button_rectangle" data-popup="popup_login"></a>
         </nav>
         <div class="mobile-menu__background"></div>
     </div> `,

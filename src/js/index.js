@@ -11,6 +11,7 @@ import NewsCardList from './components/NewsCardList';
 import NewsCard from './components/NewsCard';
 import SearchNews from './components/SearchNews';
 import TimeFormat from './utils/timeFormat';
+import HeaderMobile from './components/HeaderMobile';
 
 const dateConverter = (date) => new TimeFormat(3).convertToRussian(date);
 
@@ -32,28 +33,6 @@ const newsApi = new NewsApi({
   apiKey: 'af5e79492c924fd4bbd647c59c1521b5',
 
 });
-
-const header = new Header({
-  background: constants.header.background,
-  obj: constants.header.obj,
-  boxShadow: constants.header.box_shadow,
-  elementsColor: constants.header.elements.color,
-  loginButton: constants.header.elements.login_button,
-  logoutIcon: constants.header.elements.logout_icon,
-  filter: constants.header.elements.filter,
-  savedArticlesButton: constants.header.elements.saved_articles_button,
-  isLoggedIn: serverData.isAuth,
-  mobileMenuTemplate: templates.mobile_menu,
-  mobileMenuCloseButtonClass: constants.header.mobile_menu.close_button_class,
-  navButtonClass: constants.header.mobile_menu.nav_button_class,
-  rootElementClass: constants.root_class,
-});
-
-const headRender = () => header.render({
-  isLoggedIn: serverData.isAuth,
-  userName: localStorage.getItem('userName'),
-});
-headRender();
 
 let formInstance;
 const formValidator = (form) => {
@@ -92,7 +71,44 @@ const popupOpenBtnListener = function (button) {
     });
   }
 };
-popupOpenBtnListener(popupOpenButtons[0]);
+
+
+const headerData = {
+  headerBtnHiddenClass: constants.header.elements.hidden_button_class,
+  background: constants.header.background,
+  headerClass: constants.header.class,
+  boxShadow: constants.header.box_shadow,
+  elementsColor: constants.header.elements.color,
+  loginButtonClass: constants.header.elements.login_button_class,
+  logoutIconClass: constants.header.elements.logout_icon_class,
+  filter: constants.header.elements.filter,
+  savedArticlesButtonClass: constants.header.elements.saved_articles_button_class,
+  isLoggedIn: serverData.isAuth,
+  mobileMenuTemplate: templates.mobile_menu,
+  mobileMenuCloseButtonClass: constants.header.mobile_menu.close_button_class,
+  navButtonClass: constants.header.mobile_menu.nav_button_class,
+  rootElementClass: constants.root_class,
+  popupOpenBtnListener,
+};
+
+const headerDefault = new Header(headerData);
+const headerMobile = new HeaderMobile(headerData);
+
+const headRender = (() => {
+  const isMobile = (window.screen.width < 700);
+  const props = {
+    isLoggedIn: serverData.isAuth,
+    userName: localStorage.getItem('userName'),
+  };
+  if (isMobile) {
+    headerMobile.openBtnAddListener(props);
+  } else {
+    headerDefault.render(props);
+  }
+}
+);
+headRender();
+
 
 const getCardInstance = ((data) => new NewsCard({
   addArticle,

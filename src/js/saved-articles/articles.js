@@ -8,6 +8,7 @@ import SavedArticlesInfo from '../components/saved-articles/SavedArticlesInfo';
 import NewsCard from '../components/saved-articles/NewsCard';
 import NewsCardList from '../components/saved-articles/NewsCardList';
 import TimeFormat from '../utils/timeFormat';
+import HeaderMobile from '../components/HeaderMobile';
 
 const dateConverter = (date) => new TimeFormat(3).convertToRussian(date);
 
@@ -25,27 +26,46 @@ const removeArticle = (article) => {
   return api.removeArticle(data);
 };
 
-const header = new Header({
+
+const headerData = {
+  headerBtnHiddenClass: constants.header.elements.hidden_button_class,
   background: constants.header.background,
-  obj: constants.header.obj,
+  headerClass: constants.header.class,
   boxShadow: constants.header.box_shadow,
   elementsColor: constants.header.elements.color,
-  loginButton: constants.header.elements.login_button,
-  logoutIcon: constants.header.elements.logout_icon,
+  loginButtonClass: constants.header.elements.login_button_class,
+  logoutIconClass: constants.header.elements.logout_icon_class,
   filter: constants.header.elements.filter,
-  savedArticlesButton: constants.header.elements.saved_articles_button,
+  savedArticlesButtonClass: constants.header.elements.saved_articles_button_class,
   isLoggedIn: serverData.isAuth,
   mobileMenuTemplate: templates.mobile_menu,
   mobileMenuCloseButtonClass: constants.header.mobile_menu.close_button_class,
   navButtonClass: constants.header.mobile_menu.nav_button_class,
   rootElementClass: constants.root_class,
-});
+};
+
+const headerDefault = new Header(headerData);
+const headerMobile = new HeaderMobile(headerData);
 
 const userName = localStorage.getItem('userName');
-const headRender = () => header.render({
-  isLoggedIn: serverData.isAuth,
-  userName,
-});
+
+const headRender = (() => {
+  const isMobile = (window.screen.width < 700);
+  const props = {
+    isLoggedIn: serverData.isAuth,
+    userName,
+  };
+  if (isMobile) {
+    headerMobile.openBtnAddListener(props);
+  } else {
+    headerDefault.render(props);
+  }
+}
+);
+headRender();
+
+
+
 
 const savedArticlesInfo = new SavedArticlesInfo({
   savedArticlesSubtitleClass: constants.saved_articles.subtitleClass,

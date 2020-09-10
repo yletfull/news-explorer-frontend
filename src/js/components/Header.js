@@ -4,50 +4,49 @@ export default class Header extends BaseComponent {
   constructor(options) {
     super();
     ({
+      rootElementClass: this.rootElementClass,
       background: this.background,
-      obj: this.obj,
-      boxShadow: this.boxShadow,
-      elementsColor: this.elementsColor,
-      loginButton: this.loginButton,
-      logoutIcon: this.logoutIcon,
-      filter: this.filter,
-      savedArticlesButton: this.savedArticlesButton,
-      isLoggedIn: this.isLoggedIn,
-      mobileMenuTemplate: this.mobileMenuTemplate,
+      headerClass: this.headerClass,
+      loginButtonClass: this.loginButtonClass,
+      savedArticlesButtonClass: this.savedArticlesButtonClass,
       mobileMenuCloseButtonClass: this.mobileMenuCloseButtonClass,
       navButtonClass: this.navButtonClass,
-      rootElementClass: this.rootElementClass,
+      logoutIconClass: this.logoutIconClass,
+      boxShadow: this.boxShadow,
+      elementsColor: this.elementsColor,
+      filter: this.filter,
+      isLoggedIn: this.isLoggedIn,
+      mobileMenuTemplate: this.mobileMenuTemplate,
+      headerBtnHiddenClass: this.headerBtnHiddenClass,
+      popupOpenBtnListener: this.popupOpenBtnListener = null,
     } = options);
     this.rootElement = document.querySelector(`.${this.rootElementClass}`);
-    this.navButton = this.obj.querySelector(`.${this.navButtonClass}`);
+    this.header = this.rootElement.querySelector(`.${this.headerClass}`);
+    this.loginButton = this.header.querySelector(`.${this.loginButtonClass}`);
+    this.savedArticlesButton = this.header.querySelector(`.${this.savedArticlesButtonClass}`);
+    this.navButton = this.header.querySelector(`.${this.navButtonClass}`);
+    this.logoutIcon = this.header.querySelector(`.${this.logoutIconClass}`);
   }
 
   render(props) {
     const { isLoggedIn, userName } = props;
-    this.obj.style.color = this.elementsColor;
-    this.obj.style.background = this.background;
-    this.obj.style.boxShadow = this.boxShadow;
-    this.savedArticlesButton.classList.add('header__nav-button_hidden');
-    if (isLoggedIn) {
-      this.savedArticlesButton.classList.remove('header__nav-button_hidden');
-      this.loginButton.textContent = `${userName}`;
+    this.userName = userName;
+    this.isLoggedIn = isLoggedIn;
+    this.header.style.color = this.elementsColor;
+    this.header.style.background = this.background;
+    this.header.style.boxShadow = this.boxShadow;
+    this.savedArticlesButton.classList.add(`${this.headerBtnHiddenClass}`);
+    if (this.popupOpenBtnListener) {
+      this.popupOpenBtnListener(this.loginButton);
+    }
+    if (this.isLoggedIn) {
+      this.savedArticlesButton.classList.remove(`${this.headerBtnHiddenClass}`);
+      this.loginButton.textContent = `${this.userName}`;
       this.loginButton.appendChild(this.logoutIcon);
-      this.logoutIcon.classList.remove('header__logout-icon_hidden');
+      this.logoutIcon.classList.remove(`${this.logoutIconClass}_hidden`);
       this.logoutIcon.style['-webkit-filter'] = `${this.filter}`;
       this._setHandlers();
     }
-  }
-
-  _mobileMenuRender() {
-    this.menu = document.createElement('div');
-    this.menu.insertAdjacentHTML('beforeend', this.mobileMenuTemplate);
-    this.closeButton = this.menu.querySelector(`.${this.mobileMenuCloseButtonClass}`);
-    this.rootElement.appendChild(this.menu);
-  }
-
-  _mobileMenuRemove() {
-    this.menu.parentElement.removeChild(this.menu);
-    super._clearListener();
   }
 
   _setHandlers() {
@@ -61,27 +60,5 @@ export default class Header extends BaseComponent {
         },
       },
     ]);
-    if (window.screen.width < 700) {
-      super._setListeners([
-        {
-          element: this.navButton,
-          event: 'click',
-          callback: () => {
-            if (window.screen.width < 700) {
-              this._mobileMenuRender();
-              super._setListeners([
-                {
-                  element: this.closeButton,
-                  event: 'click',
-                  callback: () => {
-                    this._mobileMenuRemove();
-                  },
-                },
-              ]);
-            }
-          },
-        },
-      ]);
-    }
   }
 }
