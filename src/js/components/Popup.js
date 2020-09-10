@@ -78,7 +78,7 @@ export default class Popup extends BaseComponent {
     const data = this.getformInstance().getInfo();
     const promise = new Promise((resolve, reject) => {
       const res = this.api[`${event.target.dataset.buttonAction}`](data);
-      res ? resolve(res) : reject('Ошибка сервера');
+      if (res) { resolve(res); } else { reject('Ошибка сервера'); }
     });
     promise.then((data) => {
       if (data === 'autorized') {

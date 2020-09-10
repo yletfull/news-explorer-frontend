@@ -1,7 +1,7 @@
 /* @import url(./__nav-button/header__nav-button.css);
 @import url(./__nav-button_rectangle/header__nav-button_rectangle.css);
-@import url(./__logo-text/header__logo-text.css);
-@import url(./__navigation/header__navigation.css); */
+@import url(./__logo-text/header__logo-text.css);*/
+@import url(./__navigation/header__navigation.css); 
 
 .header{
     position: relative;

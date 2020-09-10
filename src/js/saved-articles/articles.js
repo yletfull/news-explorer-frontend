@@ -61,7 +61,6 @@ const headRender = (() => {
   }
 }
 );
-headRender();
 
 const savedArticlesInfo = new SavedArticlesInfo({
   savedArticlesSubtitleClass: constants.saved_articles.subtitleClass,

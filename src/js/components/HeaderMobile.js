@@ -59,6 +59,9 @@ export default class HeaderMobile extends Header {
   }
 
   openBtnAddListener(props) {
+    this.header.style.color = this.elementsColor;
+    this.header.style.background = this.background;
+    this.header.style.boxShadow = this.boxShadow;
     super._setListeners([
       {
         element: this.navButton,
