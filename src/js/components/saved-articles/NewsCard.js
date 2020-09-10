@@ -30,7 +30,7 @@ export default class SavedArticlesNewsCard extends NewsCard {
     this.cardIcon.setAttribute('src', article.urlToImage);
     this.cardIcon.onerror = () => this.cardIcon.setAttribute('src', `${this.notFoundUrl}`);
     this.cardIcon.setAttribute('alt', article.title);
-    this.cardDate.textContent = article.publishedAt;
+    this.cardDate.textContent = this.dateConverter(article.publishedAt);
     this.cardTitle.textContent = article.title;
     this.cardSubTitle.textContent = article.description;
     this.cardSource.textContent = article.source.name;
@@ -86,7 +86,7 @@ export default class SavedArticlesNewsCard extends NewsCard {
       {
         element: this.cardDeleteButton,
         event: 'mouseover',
-        callback: () => { this.newsHelpField.classList.remove(`${this.newsHelpFieldClass}_show`); },
+        callback: () => { if (window.screen.width > 1250) this.newsHelpField.classList.remove(`${this.newsHelpFieldClass}_show`); },
       },
     ]);
 
@@ -94,7 +94,7 @@ export default class SavedArticlesNewsCard extends NewsCard {
       {
         element: this.cardDeleteButton,
         event: 'mouseout',
-        callback: () => { this.newsHelpField.classList.add(`${this.newsHelpFieldClass}_show`); },
+        callback: () => { if (window.screen.width > 1250) this.newsHelpField.classList.add(`${this.newsHelpFieldClass}_show`); },
       },
     ]);
   }

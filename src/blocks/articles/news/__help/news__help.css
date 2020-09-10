@@ -10,3 +10,7 @@
     text-align: center;
     color: #000000;  
 }
+
+.news__help_show{
+    display: none;
+}

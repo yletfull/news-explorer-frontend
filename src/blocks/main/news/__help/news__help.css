@@ -26,8 +26,32 @@
     display: none;
 }
 
-@media (max-width:1250px){
-    .news__help{
-        display: none!important;
+    @media (max-width:1250px){
+        .news__help{
+            left: 3rem;
+        }
     }
-}
+
+    
+    @media (max-width:960px){
+        .news__help{
+            top: 0.5rem;
+            left: 1.5rem;
+            zoom: 0.98;
+            width: 150px;
+        }
+    }
+
+    @media (max-width:710px){
+        .news__help{
+            grid-template-columns: repeat(2, 14rem)!important;
+        }
+    }
+    
+    @media (max-width:486px){
+        .news__help{
+            left: 4.17rem;
+            width: 173px;
+        }
+    }
+    

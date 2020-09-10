@@ -20,6 +20,7 @@ export default class NewsCard extends BaseComponent {
       isLoggedIn: this.isLoggedIn,
       notFoundUrl: this.notFoundUrl,
       cardClass: this.cardClass,
+      dateConverter: this.dateConverter,
     } = data);
     this.isAdd = false;
   }
@@ -46,7 +47,7 @@ export default class NewsCard extends BaseComponent {
     this.cardIcon.setAttribute('src', article.urlToImage);
     this.cardIcon.onerror = () => this.cardIcon.setAttribute('src', `${this.notFoundUrl}`);
     this.cardIcon.setAttribute('alt', article.title);
-    this.cardDate.textContent = article.publishedAt;
+    this.cardDate.textContent = this.dateConverter(article.publishedAt);
     this.cardTitle.textContent = article.title;
     this.cardSubTitle.textContent = article.description;
     this.cardSource.textContent = article.source.name;

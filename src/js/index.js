@@ -10,6 +10,9 @@ import NewsApi from './api/NewsApi';
 import NewsCardList from './components/NewsCardList';
 import NewsCard from './components/NewsCard';
 import SearchNews from './components/SearchNews';
+import TimeFormat from './utils/timeFormat';
+
+const dateConverter = (date) => new TimeFormat(3).convertToRussian(date);
 
 const serverData = {
   origin: 'http://localhost:3000',
@@ -33,13 +36,17 @@ const newsApi = new NewsApi({
 const header = new Header({
   background: constants.header.background,
   obj: constants.header.obj,
-  boxShadow: constants.header.boxShadow,
+  boxShadow: constants.header.box_shadow,
   elementsColor: constants.header.elements.color,
   loginButton: constants.header.elements.login_button,
   logoutIcon: constants.header.elements.logout_icon,
   filter: constants.header.elements.filter,
   savedArticlesButton: constants.header.elements.saved_articles_button,
   isLoggedIn: serverData.isAuth,
+  mobileMenuTemplate: templates.mobile_menu,
+  mobileMenuCloseButtonClass: constants.header.mobile_menu.close_button_class,
+  navButtonClass: constants.header.mobile_menu.nav_button_class,
+  rootElementClass: constants.root_class,
 });
 
 const headRender = () => header.render({
@@ -103,6 +110,7 @@ const getCardInstance = ((data) => new NewsCard({
   notFoundUrl: constants.links.news_not_found_icon_link,
   cardTemplate: templates.news.card,
   cardClass: 'news__card',
+  dateConverter,
 }).cardRender(data));
 
 const cardRender = (data) => getCardInstance(data);

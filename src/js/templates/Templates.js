@@ -88,5 +88,17 @@ export default {
         <p class="news__find_title">Идет поиск новостей</p>
     </div>`,
   },
-
+  mobile_menu: `
+    <div class="mobile-menu">
+        <div class="mobile-menu_border">
+            <h1 class="mobile-menu_logo-text header__logo-text">NewsExplorer</h1>
+            <img src="..//../images/close.svg" alt="Закрыть" class="mobile-menu__close">
+        </div>
+        <nav class="mobile-menu__navigation">
+            <a href="./index.html" class="header__nav-button mobile-menu__nav-button">Главная</a>
+            <a href="./articles.html" class="header__nav-button mobile-menu__nav-button">Сохранённые статьи</a>
+            <a href="./" class="header__nav-button mobile-menu__nav-button  mobile-menu__nav-button_rectangle" data-popup="popup_login"></a>
+        </nav>
+        <div class="mobile-menu__background"></div>
+    </div> `,
 };

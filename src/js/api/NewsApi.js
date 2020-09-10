@@ -7,20 +7,8 @@ export default class NewsApi {
       pageSize: this.pageSize,
       differenceDays: this.differenceDays,
     } = data);
-    // var options_all = {
-    //     era: 'long',
-    //     year: 'numeric',
-    //     month: 'long',
-    //     day: 'numeric',
-    //     weekday: 'long',
-    //     timezone: 'UTC',
-    //     hour: 'numeric',
-    //     minute: 'numeric',
-    //     second: 'numeric'
-    // };
     this.from = new Date();
     this.from.setDate(this.to.getDate() + this.differenceDays);
-    // this.fromDate.toLocaleString("ru", options_all);
     this.from = this.getNowDate(this.from);
     this.to = this.getNowDate(this.to);
   }

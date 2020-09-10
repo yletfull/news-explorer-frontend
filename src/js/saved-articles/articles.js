@@ -7,6 +7,9 @@ import templates from '../templates/Templates';
 import SavedArticlesInfo from '../components/saved-articles/SavedArticlesInfo';
 import NewsCard from '../components/saved-articles/NewsCard';
 import NewsCardList from '../components/saved-articles/NewsCardList';
+import TimeFormat from '../utils/timeFormat';
+
+const dateConverter = (date) => new TimeFormat(3).convertToRussian(date);
 
 const serverData = {
   origin: 'http://localhost:3000',
@@ -25,13 +28,17 @@ const removeArticle = (article) => {
 const header = new Header({
   background: constants.header.background,
   obj: constants.header.obj,
-  boxShadow: constants.header.boxShadow,
+  boxShadow: constants.header.box_shadow,
   elementsColor: constants.header.elements.color,
-  loginButton: constants.header.elements.loginButton,
-  logoutIcon: constants.header.elements.logoutIcon,
+  loginButton: constants.header.elements.login_button,
+  logoutIcon: constants.header.elements.logout_icon,
   filter: constants.header.elements.filter,
   savedArticlesButton: constants.header.elements.saved_articles_button,
   isLoggedIn: serverData.isAuth,
+  mobileMenuTemplate: templates.mobile_menu,
+  mobileMenuCloseButtonClass: constants.header.mobile_menu.close_button_class,
+  navButtonClass: constants.header.mobile_menu.nav_button_class,
+  rootElementClass: constants.root_class,
 });
 
 const userName = localStorage.getItem('userName');
@@ -39,8 +46,6 @@ const headRender = () => header.render({
   isLoggedIn: serverData.isAuth,
   userName,
 });
-
-headRender();
 
 const savedArticlesInfo = new SavedArticlesInfo({
   savedArticlesSubtitleClass: constants.saved_articles.subtitleClass,
@@ -53,6 +58,7 @@ const rendersavedArticlesInfo = (keywords) => savedArticlesInfo.render({
 
 const getCardInstance = ((data) => new NewsCard({
   removeArticle,
+  dateConverter,
   isLoggedIn: serverData.isAuth,
   cardDeleteButtonClass: constants.news.news__card_delete_button_class,
   cardDeleteButtonActiveClass: 'news__delete-button_active',
@@ -86,6 +92,7 @@ const cardlist = new NewsCardList({
 
 const loader = () => {
   if (!serverData.isAuth) { window.location.replace('./index.html'); } else {
+    headRender();
     cardlist.cardPlaceClear();
     cardlist.renderLoader();
     const articles = getArticles();

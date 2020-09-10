@@ -3,13 +3,17 @@ export default {
   header: {
     obj: document.querySelector('header'),
     background: 'rgba(196, 196, 196, 0.01)',
-    boxShadow: 'inset 0px -1px 0px rgba(255, 255, 255, 0.2)',
+    box_shadow: 'inset 0px -1px 0px rgba(255, 255, 255, 0.2)',
     elements: {
       color: '#FFFFFF',
       saved_articles_button: document.querySelector('.header__nav-button_saved-articles'),
       login_button: document.querySelector('.header__nav-button_rectangle'),
       logout_icon: document.querySelector('.header__logout-icon'),
       filter: 'invert(100%)',
+    },
+    mobile_menu: {
+      close_button_class: 'mobile-menu__close',
+      nav_button_class: 'header__navigation',
     },
   },
   popups: {

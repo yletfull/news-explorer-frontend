@@ -2,13 +2,16 @@ export default {
   header: {
     obj: document.querySelector('header'),
     background: '#FFFFFF!important',
-    boxShadow: 'inset 0px -1px 0px #D1D2D6!important',
+    box_shadow: 'inset 0px -1px 0px #D1D2D6!important',
     elements: {
       color: '#1A1B22',
-      loginButton: document.querySelector('.header__nav-button_rectangle'),
+      login_button: document.querySelector('.header__nav-button_rectangle'),
       saved_articles_button: document.querySelector('.header__nav-button_saved-articles'),
-      logoutIcon: document.querySelector('.header__logout-icon'),
+      logout_icon: document.querySelector('.header__logout-icon'),
       filter: 'none',
+    },
+    mobile_menu: {
+      close_button_class: 'mobile-menu__close',
     },
   },
   news: {
