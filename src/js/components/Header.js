@@ -42,22 +42,12 @@ export default class Header extends BaseComponent {
     this.menu = document.createElement('div');
     this.menu.insertAdjacentHTML('beforeend', this.mobileMenuTemplate);
     this.closeButton = this.menu.querySelector(`.${this.mobileMenuCloseButtonClass}`);
-    if (this.closeButton) {
-      super._setListeners([
-        {
-          element: this.closeButton,
-          event: 'click',
-          callback: () => {
-            this._mobileMenuCLose();
-          },
-        },
-      ]);
-    }
     this.rootElement.appendChild(this.menu);
   }
 
-  _mobileMenuClose() {
+  _mobileMenuRemove() {
     this.menu.parentElement.removeChild(this.menu);
+    super._clearListener();
   }
 
   _setHandlers() {
@@ -79,6 +69,15 @@ export default class Header extends BaseComponent {
           callback: () => {
             if (window.screen.width < 700) {
               this._mobileMenuRender();
+              super._setListeners([
+                {
+                  element: this.closeButton,
+                  event: 'click',
+                  callback: () => {
+                    this._mobileMenuRemove();
+                  },
+                },
+              ]);
             }
           },
         },

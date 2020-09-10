@@ -112,31 +112,4 @@ export default class Api {
       .then(() => 'registred')
       .catch((error) => error.json());
   }
-
-  getCards() {
-    return fetch(`${this.baseUrl}/cards`, {
-      headers: {
-        authorization: this.token,
-      },
-    })
-      .then((res) => this.parseResponce(res))
-      .catch((err) => {
-        throw err;
-      });
-  }
-
-  editData(arg) {
-    return fetch(`${this.baseUrl}/${arg.postfix}`, {
-      method: arg.method,
-      headers: {
-        authorization: this.token,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(arg),
-    })
-      .then((res) => this.parseResponce(res))
-      .catch((err) => {
-        throw err;
-      });
-  }
 }
