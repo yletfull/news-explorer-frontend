@@ -13,12 +13,8 @@ export default class Api {
       },
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
-      .then((data) => {
-        localStorage.setItem('userName', data.user.name);
-      })
-      .catch((error) => error.json())
-      .then((error) => console.log(error.message))
-      .catch(() => {});
+      .then((data) => data)
+      .catch((error) => error.json());
   }
 
   getArticles() {
@@ -90,8 +86,7 @@ export default class Api {
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
       .then((data) => {
         localStorage.setItem('token', data.token);
-        this.getUserData();
-        return 'autorized';
+        return this.getUserData().then((data) => { localStorage.setItem('userName', data.user.name); return 'autorized'; });
       })
       .catch((error) => error.json());
   }

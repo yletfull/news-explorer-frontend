@@ -43,6 +43,9 @@ export default class SavedArticlesNewsCard extends NewsCard {
   }
 
   _removeArticle() {
+    delete this.article.allKeywords[this.article.allKeywords.indexOf(this.article.key)];
+    this.article.allKeywords = this.article.allKeywords.filter((el) => el != null);
+    this.article.reRender(this.article.allKeywords);
     this.card.parentNode.removeChild(this.card);
     super._clearListener();
   }

@@ -31,12 +31,14 @@ export default class NewsCardList extends BaseComponent {
   }
 
   _renderCards() {
+    this.articles = this.data.articles;
+    if (this.articles.length === 0) { return this._renderError(); }
     this.cardRoot.insertAdjacentHTML('afterbegin', this.cardPlaceTemplate);
     this.cardPlace = this.cardRoot.querySelector(`.${this.cardPlaceClass}`);
-    this.articles = this.data.articles;
     this.showMoreButton = this.cardRoot.querySelector(`.${this.showMoreButtonClass}`);
     this._startRender();
     this._setHandlers();
+    return true;
   }
 
   _startRender() {
@@ -77,6 +79,11 @@ export default class NewsCardList extends BaseComponent {
   }
 
   _showMore() {
+    this.showMoreButton.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      alignToTop: 'false',
+    });
     this.articleMaxOnPage += this.articleMaxOnPage;
     this._startRender();
   }

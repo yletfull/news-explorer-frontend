@@ -7,6 +7,7 @@ export default class SearchNews extends BaseComponent {
       buttonClass: this.buttonClass,
       inputClass: this.inputClass,
       getNews: this.getNews,
+      newsClass: this.newsClass,
     } = data);
     this.setHandlers = this.setHandlers.bind(this);
     this.button = document.querySelector(`.${this.buttonClass}`);
@@ -20,13 +21,13 @@ export default class SearchNews extends BaseComponent {
         element: document,
         event: 'keydown',
         callback: (event) => {
-          if (event.key === 'Enter') { event.preventDefault(); if (this._validity()) { this.getNews(this.input.value); } }
+          if (event.key === 'Enter') { event.preventDefault(); if (this._validity()) { this.getNews(this.input.value); this.news = document.querySelector(`.${this.newsClass}`); this.news.scrollIntoView({ block: 'center', behavior: 'smooth' }); } }
         },
       },
       {
         element: this.button,
         event: 'click',
-        callback: () => { if (this._validity()) { this.getNews(this.input.value); } },
+        callback: () => { if (this._validity()) { this.getNews(this.input.value); this.news = document.querySelector(`.${this.newsClass}`); this.news.scrollIntoView({ block: 'center', behavior: 'smooth' }); } },
       },
       {
         element: this.input,

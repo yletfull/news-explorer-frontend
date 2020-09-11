@@ -9,6 +9,7 @@ export default class SavedArticlesInfo {
   }
 
   render(data) {
+    this.savedArticlesKeywords.textContent = 'По ключевым словам:';
     ({
       keywords: this.keywords,
       userName: this.userName,
@@ -19,9 +20,9 @@ export default class SavedArticlesInfo {
       this.savedArticlesKeywords.style.display = 'none';
       return false;
     }
-    this.keywords = this._keywordsSort();
     this.resultSubtitleText = `${this.userName}, у вас ${this.keywords.length} сохранённых статей`;
     this._setSubtitleText();
+    this.keywords = this._keywordsSort();
     this.keywords.forEach((keyword, index) => {
       const keywordTemplate = this._createKeywordTemplate({ keyword, index, length: this.keywords.length });
       if (keywordTemplate) this.savedArticlesKeywords.insertAdjacentHTML('beforeend', keywordTemplate);

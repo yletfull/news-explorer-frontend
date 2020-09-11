@@ -149,5 +149,6 @@ const getNews = (keywords) => {
 new SearchNews({
   buttonClass: constants.search_news.button_class,
   inputClass: constants.search_news.input_class,
+  newsClass: constants.news.news_place_class,
   getNews,
 }).setHandlers();
