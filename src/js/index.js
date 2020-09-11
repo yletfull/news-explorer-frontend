@@ -29,7 +29,7 @@ const newsApi = new NewsApi({
   differenceDays: -7,
   to: new Date(),
   pageSize: 100,
-  url: 'https://nomoreparties.co/news/',
+  url: 'https://nomoreparties.co/news',
   apiKey: 'af5e79492c924fd4bbd647c59c1521b5',
 
 });

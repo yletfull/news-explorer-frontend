@@ -18,7 +18,6 @@ export default class NewsCardList extends BaseComponent {
     this.cardRoot = document.querySelector(`.${this.placeClass}`);
     this.cardPlaceClear = this.cardPlaceClear.bind(this);
     this.renderResults = this.renderResults.bind(this);
-    this.currentArticleInd = 0;
   }
 
   renderResults(data) {
@@ -31,14 +30,15 @@ export default class NewsCardList extends BaseComponent {
   }
 
   _renderCards() {
+    this.currentArticleInd = 0;
     this.articles = this.data.articles;
-    if (this.articles.length === 0) { return this._renderError(); }
-    this.cardRoot.insertAdjacentHTML('afterbegin', this.cardPlaceTemplate);
-    this.cardPlace = this.cardRoot.querySelector(`.${this.cardPlaceClass}`);
-    this.showMoreButton = this.cardRoot.querySelector(`.${this.showMoreButtonClass}`);
-    this._startRender();
-    this._setHandlers();
-    return true;
+    if (this.articles.length === 0) { this._renderError(); } else {
+      this.cardRoot.insertAdjacentHTML('afterbegin', this.cardPlaceTemplate);
+      this.cardPlace = this.cardRoot.querySelector(`.${this.cardPlaceClass}`);
+      this.showMoreButton = this.cardRoot.querySelector(`.${this.showMoreButtonClass}`);
+      this._startRender();
+      this._setHandlers();
+    }
   }
 
   _startRender() {
