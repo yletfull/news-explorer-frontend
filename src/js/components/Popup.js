@@ -61,6 +61,30 @@ export default class Popup extends BaseComponent {
           callback: () => { this._close(); this.popupOpenFunc(this.alterActionButton.dataset.popup); },
         }]);
     }
+    if (this.closeButton) {
+      super._setListeners([
+        {
+          element: document,
+          event: 'click',
+          callback: (event) => { if (event.target === this.popupElement) { this._close(event); } },
+        }]);
+    }
+    if (this.popupElement) {
+      super._setListeners([
+        {
+          element: document,
+          event: 'keydown',
+          callback: (event) => { if (event.key === 'Enter') { this.entryButton.click(); } },
+        }]);
+    }
+    if (this.popupElement) {
+      super._setListeners([
+        {
+          element: document,
+          event: 'keydown',
+          callback: (event) => { if (event.key === 'Escape') { this._close(event); } },
+        }]);
+    }
   }
 
   _close() {
@@ -94,5 +118,6 @@ export default class Popup extends BaseComponent {
 
   _clearContent() {
     this.popupElement.parentNode.removeChild(this.popupElement);
+    super._clearListener();
   }
 }
