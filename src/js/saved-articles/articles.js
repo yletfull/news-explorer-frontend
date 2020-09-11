@@ -13,7 +13,7 @@ import HeaderMobile from '../components/HeaderMobile';
 const dateConverter = (date) => new TimeFormat(3).convertToRussian(date);
 
 const serverData = {
-  origin: 'http://localhost:3000',
+  origin: 'https://api.diploma.gq',
   isAuth: !!localStorage.getItem('token'),
 };
 

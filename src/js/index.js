@@ -16,7 +16,7 @@ import HeaderMobile from './components/HeaderMobile';
 const dateConverter = (date) => new TimeFormat(3).convertToRussian(date);
 
 const serverData = {
-  origin: 'http://localhost:3000',
+  origin: 'https://api.diploma.gq',
   isAuth: !!localStorage.getItem('token'),
 };
 
@@ -29,7 +29,7 @@ const newsApi = new NewsApi({
   differenceDays: -7,
   to: new Date(),
   pageSize: 100,
-  url: 'http://newsapi.org/v2/everything?',
+  url: 'https://nomoreparties.co/news/v2/top-headlines?',
   apiKey: 'af5e79492c924fd4bbd647c59c1521b5',
 
 });
