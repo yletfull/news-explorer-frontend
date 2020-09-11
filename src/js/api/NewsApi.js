@@ -14,7 +14,7 @@ export default class NewsApi {
   }
 
   getNews(keyword) {
-    return fetch(`${this.url}/v2/top-headlines?country=ru&q=${keyword}&from=${this.from}&to=${this.to}&sortBy=popularity&apiKey=${this.apiKey}&pageSize=${this.pageSize}`)
+    return fetch(`${this.url}/v2/everything?q=${keyword}&from=${this.from}&to=${this.to}&sortBy=popularity&apiKey=${this.apiKey}&pageSize=${this.pageSize}`)
       .then((data) => (data ? data.json() : Promise.reject(res)))
       .then((articles) => {
         articles.keyword = keyword;
