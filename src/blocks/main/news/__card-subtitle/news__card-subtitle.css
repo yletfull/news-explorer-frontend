@@ -4,9 +4,9 @@
     font-weight: normal;
     font-size: 16px;
     line-height: 22px;
-    /* or 137% */
     color: #1A1B22;
     margin: 1rem 1.5rem 0.75rem;
+    overflow: hidden;
 }
 
 @media (max-width:768px){

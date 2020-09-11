@@ -14,7 +14,7 @@ export default class NewsApi {
   }
 
   getNews(keyword) {
-    return fetch(`${this.url}q=${keyword}&from=${this.from}&to=${this.to}&sortBy=popularity&apiKey=${this.apiKey}&pageSize=${this.pageSize}`)
+    return fetch(`${this.url}/v2/top-headlines?country=ru&q=${keyword}&from=${this.from}&to=${this.to}&sortBy=popularity&apiKey=${this.apiKey}&pageSize=${this.pageSize}`)
       .then((data) => (data ? data.json() : Promise.reject(res)))
       .then((articles) => {
         articles.keyword = keyword;
@@ -29,6 +29,6 @@ export default class NewsApi {
     if (mm < 10) mm = `0${mm}`;
     let dd = date.getDate();
     if (dd < 10) dd = `0${dd}`;
-    return `${yy}.${mm}.${dd}`;
+    return `${yy}-${mm}-${dd}`;
   }
 }

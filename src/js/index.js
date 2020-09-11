@@ -29,7 +29,7 @@ const newsApi = new NewsApi({
   differenceDays: -7,
   to: new Date(),
   pageSize: 100,
-  url: 'https://nomoreparties.co/news/v2/top-headlines?',
+  url: 'https://nomoreparties.co/news/',
   apiKey: 'af5e79492c924fd4bbd647c59c1521b5',
 
 });
@@ -141,6 +141,7 @@ const cardlist = new NewsCardList({
 });
 
 const getNews = (keywords) => {
+  cardlist.cardPlaceClear();
   cardlist.renderLoader();
   const articles = newsApi.getNews(keywords);
   articles.then((articles) => cardlist.renderResults(articles));
