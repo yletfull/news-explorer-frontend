@@ -1,0 +1,19 @@
+@import url(./__logo-text/mobile-menu_logo-text.css);
+@import url(./__close/mobile-menu__close.css);
+@import url(./__nav-button_mobile/mobile-menu__nav-button.css);
+@import url(./__nav-button_rectangle_mobile/mobile-menu__nav-button_rectangle_mobile.css);
+@import url(./__navigation/mobile-menu__navigation.css);
+@import url(./__border/mobile-menu_border.css);
+@import url(./__background/mobile-menu__background.css);
+
+.mobile-menu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+}
+.mobile-menu_hidden{
+    display: none;
+}

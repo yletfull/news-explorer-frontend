@@ -1,0 +1,15 @@
+.popup__error{
+    position: absolute;
+    text-align: center;
+    margin: 17px auto 0;
+    width: 100%;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;    
+}
+.popup__error_hidden{
+    display: none;  
+}

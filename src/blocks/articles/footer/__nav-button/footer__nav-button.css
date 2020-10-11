@@ -1,0 +1,14 @@
+.footer__nav-button{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    /* or 133% */
+
+    text-align: center;
+
+    /* main/primary */
+    margin-right: 29px;
+    color: #1A1B22;
+}

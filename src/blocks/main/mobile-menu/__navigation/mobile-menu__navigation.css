@@ -1,0 +1,7 @@
+.mobile-menu__navigation{
+    flex-direction: column!important;
+    width: calc(100%-32px);
+    align-items: flex-start;
+    padding: 0 1rem;
+    background-color: #1A1B22;
+}

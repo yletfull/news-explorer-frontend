@@ -1,0 +1,16 @@
+@import url(./__help/news__help.css);
+@import url(./__source/news__source.css);
+@import url(./__delete-button/news__delete-button.css);
+@import url(./__tags-place/news__tags-place.css);
+
+
+.news{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #F5F6F7;
+}
+
+.news_empty_hidden{
+    display: none;
+}

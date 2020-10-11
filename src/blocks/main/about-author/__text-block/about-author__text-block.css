@@ -1,0 +1,17 @@
+.about-author__text-block{
+    display: flex;
+    flex-direction: column;
+    margin: 8.18rem 8.18rem 0 56px;
+}
+
+@media (max-width:768px){
+    .about-author__text-block{
+        margin: 2.5rem 2.5rem 3.8125rem 2.5rem!important;
+    }
+}
+
+@media (max-width:625px){
+    .about-author__text-block{
+        margin-top: 1.5rem!important;
+    }
+}

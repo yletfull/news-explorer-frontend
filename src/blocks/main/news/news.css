@@ -1,0 +1,27 @@
+@import url(./__not-found-picture/news__not-found-picture.css);
+@import url(./__not-found-subtitle/news__not-found-subtitle.css);
+@import url(./__not-found-title/news__not-found-title.css);
+@import url(./__card-icon/news__card-icon.css);
+@import url(./__card-place/news__card-place.css);
+@import url(./__card-subtitle/news__card-subtitle.css);
+@import url(./__card-title/news__card-title.css);
+@import url(./__card/news__card.css);
+@import url(./__source/news__source.css);
+@import url(./__tltle/news__title.css);
+@import url(./__date/news__date.css);
+@import url(./__button/news__button.css);
+@import url(./__flag/news__flag.css);
+@import url(./__help/news__help.css);
+@import url(./__find_title/news__find_title.css);
+@import url(./__card-description/news__card-description.css);
+
+.news{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #F5F6F7;
+}
+
+.news_empty_hidden{
+    display: none;
+}

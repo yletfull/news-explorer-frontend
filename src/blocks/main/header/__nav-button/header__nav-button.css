@@ -1,0 +1,32 @@
+.header__nav-button{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+    margin-right: 2rem;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+}
+
+.header__nav-button_hidden{
+    display: none!important;
+}
+.header__nav-button:last-of-type{
+    margin-right:6.5rem;
+}
+
+@media(max-width:1024px){
+    .header__nav-button{
+        font-size: 16px;
+    }
+}
+
+@media(max-width:700px){
+    .header__nav-button{
+        display: none;
+    }
+}

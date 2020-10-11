@@ -1,0 +1,17 @@
+.popup__alter-action{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;  
+    color: #000000;
+    width: 14.125rem;
+    height: 1.25rem;
+    margin: 1rem auto 1.75rem;
+}
+
+.popup__alter-action_link{
+    color: #2F71E5;
+    margin: 1rem 0 1.75rem;
+}

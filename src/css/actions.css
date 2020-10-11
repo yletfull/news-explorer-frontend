@@ -1,0 +1,10 @@
+.button:focus {
+    outline: none !important;
+    cursor: pointer;
+}
+.button:hover {
+    cursor: pointer
+}
+.input:focus {
+    outline: none !important;
+}

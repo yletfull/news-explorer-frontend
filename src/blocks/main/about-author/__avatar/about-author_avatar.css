@@ -1,0 +1,33 @@
+.about-author_avatar{
+    border-radius: 1000px;
+    margin-top: 5rem;
+    margin: 5rem 0 5rem 0;
+    width: 29rem;
+    height: 29rem;
+    background-size: cover;
+}
+
+@media (max-width:1324px){
+    .about-author_avatar{
+        margin-left: 4rem;
+    }
+}
+
+@media (max-width:768px){
+    .about-author_avatar{
+        margin-left: 2.5rem!important;
+        height: 14.5rem;
+        width: 14.5rem;
+        margin-top: 3.8125rem!important;
+    }
+}
+
+@media (max-width:625px){
+    .about-author_avatar{
+        margin-top: 2rem!important;
+        margin-left: 0!important;
+        margin-bottom: 0!important;
+        height: 17rem;
+        width: 17rem;
+    }
+}

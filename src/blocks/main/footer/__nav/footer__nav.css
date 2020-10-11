@@ -1,0 +1,11 @@
+.footer__nav{
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width:625px){
+    .footer__nav{
+        order: 1;
+        justify-content: inherit;
+    }
+}

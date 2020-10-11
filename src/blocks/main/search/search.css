@@ -1,0 +1,41 @@
+@import url(./__button/search__button.css);
+@import url(./__form/search__form.css);
+@import url(./__input/search__input.css);
+@import url(./__subtitle/search__subtitle.css);
+@import url(./__title/search__title.css);
+@import url(./__block/search__block.css);
+
+.search{
+    background-image: url(~images/search-block_background.png);
+    width: 100%;
+    height: 36rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 81px;
+}
+
+
+@media (max-width:768px){
+    .search{
+        max-height: 25rem;
+        padding-top: 67px;
+    }
+}
+
+@media (max-width:700px){
+    .search{
+        max-height: none;
+        padding-top: 56px;
+    }
+}
+
+@media (max-width:400px){
+    .search{
+       height: auto;
+    }
+}
+

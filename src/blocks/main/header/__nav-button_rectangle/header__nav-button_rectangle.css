@@ -1,0 +1,26 @@
+.header__nav-button_rectangle{
+    margin: 1rem 2rem 1rem 0;
+    padding: 1rem;
+    border: 1px solid;
+    box-sizing: border-box;
+    border-radius: 100px;   
+}
+
+@media (max-width:1024px){
+    .header__nav-button_rectangle{
+        margin-right: 2.5rem!important;
+    }
+}
+
+@media (max-width:768px){
+    .header__nav-button_rectangle{
+        margin-top: 14px;
+        margin-bottom: 12px;
+    }
+}
+
+@media (max-width:700px){
+    .header__nav-button_rectangle{
+        display: none;
+    }
+}

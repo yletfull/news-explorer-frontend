@@ -1,0 +1,9 @@
+.header__nav-button_current{
+    border-bottom: solid;
+}
+
+@media (max-width:700px){
+    .header__nav-button_current{
+        display: none;
+    }
+}

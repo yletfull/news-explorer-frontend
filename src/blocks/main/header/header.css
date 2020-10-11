@@ -1,0 +1,31 @@
+@import url(./__nav-button/header__nav-button.css);
+@import url(./__nav-button_rectangle/header__nav-button_rectangle.css);
+@import url(./__navigation/header__navigation.css);
+@import url(./__logo-text/header__logo-text.css);
+@import url(./__nav-button_current/header__nav-button_current.css);
+@import url(./__logout-icon/header__logout-icon.css);
+
+.header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 1440px;
+    margin: auto;
+}
+
+@media (max-width:768px){
+    .header{
+        max-height: 4.125rem;
+    }
+}
+
+@media (max-width:700px){
+    .header{
+        max-height: 3.5rem;
+    }
+}
