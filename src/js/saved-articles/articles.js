@@ -66,9 +66,11 @@ const savedArticlesInfo = new SavedArticlesInfo({
   savedArticlesSubtitleClass: constants.saved_articles.subtitleClass,
   savedArticlesKeywordsClass: constants.saved_articles.keywordsClass,
 });
-const rendersavedArticlesInfo = (keywords) => savedArticlesInfo.render({
+const rendersavedArticlesInfo = (keywords, hideCardList) => savedArticlesInfo.render({
   keywords,
+  hideCardList,
   userName,
+
 });
 
 const getCardInstance = ((data) => new NewsCard({

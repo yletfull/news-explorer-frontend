@@ -6,6 +6,8 @@ export default class NewsCardListSavedArt extends NewsCardList {
     ({
       rendersavedArticlesInfo: this.rendersavedArticlesInfo,
     } = data);
+    this.currentArticleInd = 0;
+    this.hideCardList = this.hideCardList.bind(this);
   }
 
   renderResults(data) {
@@ -25,10 +27,15 @@ export default class NewsCardListSavedArt extends NewsCardList {
       this.article.keyword = this.keyword;
       this.article.allKeywords = this.keywords;
       this.article.reRender = this.rendersavedArticlesInfo;
+      this.article.hideCardList = this.hideCardList;
       this.card = this.cardRender(this.article);
       this._addCard();
       this.currentArticleInd++;
     }
-    if (this.currentArticleInd === this.articles.length) { this._showButton(); }
+    if (this.currentArticleInd === this.articles.length) { this._hideButton(); }
+  }
+
+  hideCardList() {
+    this.cardPlace.remove();
   }
 }

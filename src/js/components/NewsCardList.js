@@ -49,10 +49,10 @@ export default class NewsCardList extends BaseComponent {
       this._addCard();
       this.currentArticleInd++;
     }
-    if (this.currentArticleInd === this.articles.length) { this._showButton(); }
+    if (this.currentArticleInd === this.articles.length) { this._hideButton(); }
   }
 
-  _showButton() {
+  _hideButton() {
     this.showMoreButton.classList.add(`${this.showMoreButtonClass}_hidden`);
   }
 

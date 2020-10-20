@@ -9,15 +9,17 @@ export default class SavedArticlesInfo {
   }
 
   render(data) {
-    this.savedArticlesKeywords.textContent = 'По ключевым словам:';
+    this.savedArticlesKeywords.textContent = 'По ключевым словам: ';
     ({
       keywords: this.keywords,
       userName: this.userName,
+      hideCardList: this.hideCardList = ()=>{},
     } = data);
     if (this.keywords.length === 0) {
       this.resultSubtitleText = `${this.userName}, у вас нет сохранённых статей`;
       this._setSubtitleText();
       this.savedArticlesKeywords.style.display = 'none';
+      this.hideCardList();
       return false;
     }
     this.resultSubtitleText = `${this.userName}, у вас ${this.keywords.length} сохранённых статей`;

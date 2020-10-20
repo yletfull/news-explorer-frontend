@@ -13,6 +13,8 @@ export default class SavedArticlesNewsCard extends NewsCard {
 
   cardRender(article) {
     this.article = article;
+    this.hideCardList = article.hideCardList;
+    this.articlesCounter = this.article.articlesCounter;
     this.card = document.createElement('div');
     this.card.classList.add(this.cardClass);
     this.card.insertAdjacentHTML('beforeend', this.cardTemplate);
@@ -45,7 +47,7 @@ export default class SavedArticlesNewsCard extends NewsCard {
   _removeArticle() {
     delete this.article.allKeywords[this.article.allKeywords.indexOf(this.article.key)];
     this.article.allKeywords = this.article.allKeywords.filter((el) => el != null);
-    this.article.reRender(this.article.allKeywords);
+    this.article.reRender(this.article.allKeywords, this.hideCardList);
     this.card.parentNode.removeChild(this.card);
     super._clearListener();
   }
