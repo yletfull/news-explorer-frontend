@@ -16,11 +16,12 @@ COPY . .
 # Собираем проект
 RUN npm run build
 
-# Копируем содержимое папки dist внутрь контейнера
-COPY dist /app/dist
-
-# Экспонируем порт, если это необходимо (для dev-сервера)
-# EXPOSE 8080
+# Проверяем наличие директории dist и копируем ее внутрь контейнера
+RUN ls -la
+RUN ls -la dist
+RUN ls -la dist/*
+COPY ./dist /app/dist
 
 # Команда для запуска приложения
 CMD ["npm", "run", "start"]
+
