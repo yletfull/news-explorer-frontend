@@ -23,5 +23,4 @@ RUN ls -la dist/*
 COPY ./dist /app/dist
 
 # Команда для запуска приложения
-CMD ["npm", "run", "start"]
-
+CMD ["sh", "-c", "npm start -- --HASH $(ls dist/main.*.js | sed -n 's/.*main\.\([a-f0-9]*\)\.js/\1/p')"]
