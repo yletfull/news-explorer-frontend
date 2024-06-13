@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/yletfull/news-explorer-frontend#readme",
   "devDependencies": {
-    "@babel/cli": "~7.8.4",
+    "@babel/cli": "^7.23.9",
     "@babel/core": "~7.9.6",
     "@babel/preset-env": "~7.9.6",
     "autoprefixer": "~9.7.6",
@@ -32,7 +32,7 @@
     "file-loader": "~6.0.0",
     "gh-pages": "~2.0.1",
     "html-webpack-plugin": "~4.3.0",
-    "image-webpack-loader": "~6.0.0",
+    "image-webpack-loader": "^8.1.0",
     "mini-css-extract-plugin": "~0.9.0",
     "optimize-css-assets-webpack-plugin": "~5.0.3",
     "postcss-loader": "~3.0.0",
