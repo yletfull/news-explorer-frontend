@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Сборка проекта
-RUN npm run build
+RUN npm run dev
 
 # Указываем порт, который будет использоваться приложением
 EXPOSE 8080
