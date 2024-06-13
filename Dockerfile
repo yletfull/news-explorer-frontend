@@ -9,7 +9,7 @@ COPY package*.json ./
 
 # Устанавливаем зависимости
 RUN npm install
-RUN npm npm audit fix --force
+RUN npm audit fix --force
 
 # Копируем весь остальной исходный код в рабочую директорию
 COPY . .
