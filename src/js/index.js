@@ -20,7 +20,7 @@ const serverData = {
   isAuth: !!localStorage.getItem('token'),
 };
 
-const api = new MainApi(serverData);
+const api = new MainApi(serverData, true);
 
 const addArticle = (article) => api.createArticle(article);
 const removeArticle = (article) => api.removeArticle(article);

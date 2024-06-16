@@ -1,8 +1,8 @@
 export default class Api {
-  constructor(options) {
+  constructor(options, isArticlesApi) {
     ({ origin: this.origin, isAuth: this.isAuth } = options);
     this.baseUrl = typeof this.origin === 'string' ? this.origin.replace('/undefined', '') : '';
-    this.baseUrl = `${this.baseUrl}/api`;
+    this.baseUrl = isArticlesApi ? this.baseUrl : `${this.baseUrl}/api`;
     this.createArticle = this.createArticle.bind(this);
   }
 
