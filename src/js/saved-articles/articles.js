@@ -13,7 +13,7 @@ import HeaderMobile from '../components/HeaderMobile';
 const dateConverter = (date) => new TimeFormat(3).convertToRussian(date);
 
 const serverData = {
-  origin: process.env.BASE_URL,,
+  origin: process.env.BASE_URL,
   isAuth: !!localStorage.getItem('token'),
 };
 
