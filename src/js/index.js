@@ -16,11 +16,11 @@ import HeaderMobile from './components/HeaderMobile';
 const dateConverter = (date) => new TimeFormat(3).convertToRussian(date);
 
 const serverData = {
-  origin: process.env.BASE_URL,
+  origin: process.env.BASE_URL + '/api',
   isAuth: !!localStorage.getItem('token'),
 };
 
-const api = new MainApi(serverData, true);
+const api = new MainApi(serverData);
 
 const addArticle = (article) => api.createArticle(article);
 const removeArticle = (article) => api.removeArticle(article);
