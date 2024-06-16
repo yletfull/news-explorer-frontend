@@ -16,7 +16,7 @@ import HeaderMobile from './components/HeaderMobile';
 const dateConverter = (date) => new TimeFormat(3).convertToRussian(date);
 
 const serverData = {
-  origin: process.env.BASE_URL + '/api',
+  origin: process.env.BASE_URL,
   isAuth: !!localStorage.getItem('token'),
 };
 
@@ -31,7 +31,6 @@ const newsApi = new NewsApi({
   pageSize: 100,
   url: 'https://nomoreparties.co/news',
   apiKey: 'af5e79492c924fd4bbd647c59c1521b5',
-
 });
 
 let formInstance;
