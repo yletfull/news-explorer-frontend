@@ -52,3 +52,43 @@ NewsExplorer - небольшой проект, который позволяе�
 ## 6. Github pages  
 [gh-pages](https://yletfull.github.io/news-explorer-frontend/)  
 [Облачный сервер](https://diploma.gq/)
+
+
+## 7. Docker-compose
+``` 
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    env_file:
+      - .env
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - DB_URL=mongodb://mongodb:27017/mestodb
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
+```
