@@ -17,6 +17,9 @@ COPY . .
 # Собираем проект
 RUN npm run build
 
+# Добавляем тестовый HTML файл
+COPY index.html /app/dist/index.html
+
 # Stage 2: Production Stage
 # Используем официальный образ Nginx для размещения приложения
 FROM nginx:alpine
