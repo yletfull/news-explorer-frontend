@@ -1,5 +1,6 @@
-# Используем официальный образ Node.js на базе Ubuntu
-FROM node:14
+# Stage 1: Build Stage
+# Используем официальный образ Node.js на базе Ubuntu для сборки проекта
+FROM node:14 AS build
 
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
@@ -16,11 +17,21 @@ COPY . .
 # Собираем проект
 RUN npm run build
 
-# Проверяем наличие директории dist и копируем ее внутрь контейнера
-RUN ls -la
-RUN ls -la dist
-RUN ls -la dist/*
-COPY ./dist /app/dist
+# Stage 2: Production Stage
+# Используем официальный образ Nginx для размещения приложения
+FROM nginx:alpine
 
-# Команда для запуска приложения
-CMD ["sh", "-c", "npm start -- --HASH $(ls dist/main.*.js | sed -n 's/.*main\.\([a-f0-9]*\)\.js/\1/p')"]
+# Удаляем дефолтный конфигурационный файл Nginx
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Копируем наш конфигурационный файл Nginx в контейнер
+COPY nginx.conf /etc/nginx/conf.d
+
+# Копируем собранное приложение из первой стадии в корневую директорию Nginx
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Открываем порт 80 для доступа к приложению
+EXPOSE 80
+
+# Запускаем Nginx
+CMD ["nginx", "-g", "daemon off;"]
