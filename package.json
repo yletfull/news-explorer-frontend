@@ -7,7 +7,7 @@
     "build": "cross-env NODE_ENV=production rimraf dist && webpack --mode production",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch",
     "deploy": "cross-env NODE_ENV=production gh-pages -d dist",
-    "start": "cross-env NODE_ENV=production node dist/main.${HASH}.js"
+    "start": "cross-env serve -s dist"
   },
   "repository": {
     "type": "git",
@@ -48,6 +48,7 @@
     "babel-polyfill": "~6.26.0",
     "core-js": "~3.4.1",
     "eslint": "~7.6.0",
+    "serve": "^14.2.3",
     "validator": "^13.1.1"
   }
 }
